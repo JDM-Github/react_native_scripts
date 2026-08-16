@@ -1,8 +1,8 @@
 {
     "version": "0.0.0+1",
-    "name": "react-native-scripts",
-    "description": "A React Native Scripts project",
-    "title": "React Native Scripts",
+    "name": "react-native-structure",
+    "description": "A React Native Structure project",
+    "title": "React Native Structure",
     "rules": {
         "global": ["flag", "type", "required", "description"],
         "string": ["allowed_regex"],
@@ -36,7 +36,7 @@
                 "message-invalid-path": "Invalid path provided for screen creation",
                 "message-invalid-template": "Invalid template provided for screen creation",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"screen\" \"${screen.path}/${screen.filename}\" \"${screen.args.name}\""
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"screen\" --target \"${screen.path}/${screen.filename}\" --name \"${screen.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -54,7 +54,7 @@
                 "message-invalid-path": "Invalid layout path",
                 "message-invalid-template": "Invalid layout template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"layout\" \"${layout.path}/${layout.filename}\" \"${layout.args.name}\""
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"layout\" --target \"${layout.path}/${layout.filename}\" --name \"${layout.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -72,7 +72,7 @@
                 "message-invalid-path": "Invalid widget path",
                 "message-invalid-template": "Invalid widget template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"widget\" \"${widget.path}/${widget.filename}\" \"${widget.args.name}\""
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"widget\" --target \"${widget.path}/${widget.filename}\" --name \"${widget.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -90,7 +90,7 @@
                 "message-invalid-path": "Invalid API endpoint path",
                 "message-invalid-template": "Invalid API endpoint template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"apiEndpoint\" \"${apiEndpoint.path}/${apiEndpoint.filename}\" \"${apiEndpoint.args.name}\""
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"apiEndpoint\" --target \"${apiEndpoint.path}/${apiEndpoint.filename}\" --name \"${apiEndpoint.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -108,7 +108,7 @@
                 "message-invalid-path": "Invalid API model path",
                 "message-invalid-template": "Invalid API model template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"apiModel\" \"${apiModel.path}/${apiModel.filename}\" \"${apiModel.args.name}\""
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"apiModel\" --target \"${apiModel.path}/${apiModel.filename}\" --name \"${apiModel.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -126,7 +126,7 @@
                 "message-invalid-path": "Invalid service path",
                 "message-invalid-template": "Invalid service template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"service\" \"${service.path}/${service.filename}\" \"${service.args.name}\""
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"service\" --target \"${service.path}/${service.filename}\" --name \"${service.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -144,7 +144,7 @@
                 "message-invalid-path": "Invalid storage path",
                 "message-invalid-template": "Invalid storage template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"storage\" \"${storage.path}/${storage.filename}\" \"${storage.args.name}\""
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"storage\" --target \"${storage.path}/${storage.filename}\" --name \"${storage.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -162,7 +162,7 @@
                 "message-invalid-path": "Invalid utility path",
                 "message-invalid-template": "Invalid utility template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"utility\" \"${utility.path}/${utility.filename}\" \"${utility.args.name}\""
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"utility\" --target \"${utility.path}/${utility.filename}\" --name \"${utility.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -180,7 +180,7 @@
                 "message-invalid-path": "Invalid state path",
                 "message-invalid-template": "Invalid state template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"state\" \"${state.path}/${state.filename}\" \"${state.args.name}\""
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"state\" --target \"${state.path}/${state.filename}\" --name \"${state.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -198,7 +198,7 @@
                 "message-invalid-path": "Invalid manager path",
                 "message-invalid-template": "Invalid manager template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"manager\" \"${manager.path}/${manager.filename}\" \"${manager.args.name}\""
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"manager\" --target \"${manager.path}/${manager.filename}\" --name \"${manager.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -216,7 +216,7 @@
                 "message-invalid-path": "Invalid constant path",
                 "message-invalid-template": "Invalid constant template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"constant\" \"${constant.path}/${constant.filename}\" \"${constant.args.name}\""
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"constant\" --target \"${constant.path}/${constant.filename}\" --name \"${constant.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -234,7 +234,7 @@
                 "message-invalid-path": "Invalid enum path",
                 "message-invalid-template": "Invalid enum template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"enum\" \"${enum.path}/${enum.filename}\" \"${enum.args.name}\""
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"enum\" --target \"${enum.path}/${enum.filename}\" --name \"${enum.args.name}\" --project-root \"${root}\""
                 ]
             }
 

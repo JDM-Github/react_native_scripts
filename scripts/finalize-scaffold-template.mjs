@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, renameSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
@@ -14,22 +14,23 @@ const KNOWN_NAME_WORDS           = new Set([
   'settings', 'signup', 'storage', 'support', 'theme', 'user', 'validation',
   'welcome',
 ]);
-const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const templatesRoot = resolve(workspaceRoot, 'templates');
+const scriptPath    = fileURLToPath(import.meta.url);
+const toolRoot      = resolve(dirname(scriptPath), '..');
+const templatesRoot = resolve(toolRoot, 'templates');
 
-const SCAFFOLD_DEFINITIONS = {
-  screen     : { root: 'src/screens', suffix: '.screen.tsx' },
-  layout     : { root: 'src/layouts', suffix: '.layout.tsx' },
-  widget     : { root: 'src/components/widgets', suffix: '.widget.tsx' },
-  apiEndpoint: { root: 'src/apis/endpoint', suffix: '.api.ts' },
-  apiModel   : { root: 'src/apis/models', suffix: '.model.ts' },
-  service    : { root: 'src/core/services', suffix: '.service.ts' },
-  storage    : { root: 'src/core/storages', suffix: '.storage.ts' },
-  utility    : { root: 'src/core/utilities', suffix: '.utility.ts' },
-  state      : { root: 'src/core/states', suffix: '.state.ts' },
-  manager    : { root: 'src/core/managers', suffix: '.manager.ts' },
-  constant   : { root: 'src/core/constants', suffix: '.constant.ts' },
-  enum       : { root: 'src/core/enums', suffix: '.enum.ts' },
+export const SCAFFOLD_DEFINITIONS = {
+  screen     : { root: 'src/screens', suffix: '.screen.tsx', template: 'screen.template.tsx' },
+  layout     : { root: 'src/layouts', suffix: '.layout.tsx', template: 'layout.template.tsx' },
+  widget     : { root: 'src/components/widgets', suffix: '.widget.tsx', template: 'widget.template.tsx' },
+  apiEndpoint: { root: 'src/apis/endpoint', suffix: '.api.ts', template: 'api-endpoint.template.ts' },
+  apiModel   : { root: 'src/apis/models', suffix: '.model.ts', template: 'api-model.template.ts' },
+  service    : { root: 'src/core/services', suffix: '.service.ts', template: 'service.template.ts' },
+  storage    : { root: 'src/core/storages', suffix: '.storage.ts', template: 'storage.template.ts' },
+  utility    : { root: 'src/core/utilities', suffix: '.utility.ts', template: 'utility.template.ts' },
+  state      : { root: 'src/core/states', suffix: '.state.ts', template: 'state.template.ts' },
+  manager    : { root: 'src/core/managers', suffix: '.manager.ts', template: 'manager.template.ts' },
+  constant   : { root: 'src/core/constants', suffix: '.constant.ts', template: 'constant.template.ts' },
+  enum       : { root: 'src/core/enums', suffix: '.enum.ts', template: 'enum.template.ts' },
 };
 
 function isInside(parent, target) {
@@ -80,10 +81,10 @@ function splitName(value) {
     .flatMap((word) => segmentKnownWords(word.toLowerCase()));
 }
 
-function primaryPath(kind, name) {
-  if (kind === 'apiEndpoint') return resolve(workspaceRoot, `src/apis/endpoint/${name}/get/ping.${name}.api.ts`);
+function primaryPath(projectRoot, kind, name) {
+  if (kind === 'apiEndpoint') return resolve(projectRoot, `src/apis/endpoint/${name}/get/ping.${name}.api.ts`);
   const definition = SCAFFOLD_DEFINITIONS[kind];
-  return resolve(workspaceRoot, definition.root, `${name}${definition.suffix}`);
+  return resolve(projectRoot, definition.root, `${name}${definition.suffix}`);
 }
 
 function companions(kind, name) {
@@ -125,58 +126,113 @@ function render(source, sourcePath, replacements, lineEnding) {
   return `${output}${lineEnding}`;
 }
 
-const kind           = process.argv[2];
-const targetArgument = process.argv[3];
-const rawName        = process.argv[4];
-const definition     = SCAFFOLD_DEFINITIONS[kind];
+function flagValue(args, flag) {
+  const index = args.indexOf(flag);
+  if (index === -1) return undefined;
 
-if (!definition) throw new Error(`Unknown scaffold kind: ${kind ?? ''}`);
-if (!targetArgument || !rawName) throw new Error('A generated path and scaffold name are required.');
-
-const targetPath = resolve(workspaceRoot, targetArgument);
-const allowedRoot = resolve(workspaceRoot, definition.root);
-
-if (!isInside(allowedRoot, targetPath) || !targetPath.endsWith(definition.suffix)) {
-  throw new Error(`Refusing to finalize an invalid ${kind} path: ${targetPath}`);
+  const value = args[index + 1];
+  if (!value || value.startsWith('--')) throw new Error(`A value is required for ${flag}.`);
+  return value;
 }
 
-const words         = splitName(rawName);
-const kebabName     = words.join('-');
-const pascalName    = words.map((word) => `${word[0].toUpperCase()}${word.slice(1)}`).join('');
-const title         = words.map((word) => `${word[0].toUpperCase()}${word.slice(1)}`).join(' ');
-const finalizedPath = primaryPath(kind, kebabName);
-const companionFiles = companions(kind, kebabName).map(([template, path]) => ({
-  path        : resolve(workspaceRoot, path),
-  templatePath: resolve(templatesRoot, template),
-}));
+function parseArguments(args) {
+  if (!args.some((argument) => argument.startsWith('--'))) {
+    const [kind, target, name, projectRoot] = args;
+    return { kind, name, projectRoot, target };
+  }
 
-if (!kebabName || !pascalName) throw new Error(`Unable to normalize scaffold name: ${rawName}`);
+  const supportedFlags = new Set(['--kind', '--name', '--project-root', '--target']);
+  for (let index = 0; index < args.length; index += 2) {
+    if (!supportedFlags.has(args[index])) throw new Error(`Unknown argument: ${args[index] ?? ''}`);
+  }
 
-for (const output of [finalizedPath, ...companionFiles.map((file) => file.path)]) {
-  if (output !== targetPath && existsSync(output)) throw new Error(`Scaffold output already exists: ${output}`);
+  return {
+    kind       : flagValue(args, '--kind'),
+    name       : flagValue(args, '--name'),
+    projectRoot: flagValue(args, '--project-root'),
+    target     : flagValue(args, '--target'),
+  };
 }
 
-const replacements = {
-  __KEBAB_NAME__: kebabName,
-  __NAME__      : pascalName,
-  __TITLE__     : title,
-};
-const primarySource = readFileSync(targetPath, 'utf8');
-const lineEnding    = primarySource.includes('\r\n') ? '\r\n' : '\n';
-const renderedPrimary = render(primarySource, targetPath, replacements, lineEnding);
-const renderedCompanions = companionFiles.map((file) => ({
-  ...file,
-  content: render(readFileSync(file.templatePath, 'utf8'), file.templatePath, replacements, lineEnding),
-}));
+export function finalizeScaffold({ kind, name: rawName, projectRoot: projectRootArgument, target: targetArgument }) {
+  const definition  = SCAFFOLD_DEFINITIONS[kind];
+  const projectRoot = resolve(projectRootArgument ?? toolRoot);
 
-writeFileSync(targetPath, renderedPrimary, 'utf8');
-if (finalizedPath !== targetPath) {
-  mkdirSync(dirname(finalizedPath), { recursive: true });
-  renameSync(targetPath, finalizedPath);
-}
-for (const file of renderedCompanions) {
-  mkdirSync(dirname(file.path), { recursive: true });
-  writeFileSync(file.path, file.content, { encoding: 'utf8', flag: 'wx' });
+  if (!definition) throw new Error(`Unknown scaffold kind: ${kind ?? ''}`);
+  if (!rawName) throw new Error('A scaffold name is required.');
+  if (!existsSync(projectRoot) || !statSync(projectRoot).isDirectory()) {
+    throw new Error(`Project root does not exist or is not a directory: ${projectRoot}`);
+  }
+
+  const words      = splitName(rawName);
+  const kebabName  = words.join('-');
+  const pascalName = words.map((word) => `${word[0].toUpperCase()}${word.slice(1)}`).join('');
+  const title      = words.map((word) => `${word[0].toUpperCase()}${word.slice(1)}`).join(' ');
+
+  if (!kebabName || !pascalName) throw new Error(`Unable to normalize scaffold name: ${rawName}`);
+
+  const finalizedPath = primaryPath(projectRoot, kind, kebabName);
+  const targetPath    = targetArgument ? resolve(projectRoot, targetArgument) : finalizedPath;
+  const allowedRoot   = resolve(projectRoot, definition.root);
+  const hasStagedTarget = Boolean(targetArgument);
+  const targetExists  = existsSync(targetPath);
+  const primaryTemplatePath = resolve(templatesRoot, definition.template);
+  const companionFiles = companions(kind, kebabName).map(([template, path]) => ({
+    path        : resolve(projectRoot, path),
+    templatePath: resolve(templatesRoot, template),
+  }));
+
+  if (!isInside(allowedRoot, targetPath) || !targetPath.endsWith(definition.suffix)) {
+    throw new Error(`Refusing to finalize an invalid ${kind} path: ${targetPath}`);
+  }
+  for (const output of [finalizedPath, ...companionFiles.map((file) => file.path)]) {
+    if (!isInside(projectRoot, output)) throw new Error(`Scaffold output escapes the project root: ${output}`);
+    const isStagedOutput = hasStagedTarget && targetExists && output === targetPath;
+    if (existsSync(output) && !isStagedOutput) {
+      throw new Error(`Scaffold output already exists: ${output}`);
+    }
+  }
+
+  const replacements = {
+    __KEBAB_NAME__: kebabName,
+    __NAME__      : pascalName,
+    __TITLE__     : title,
+  };
+  const primarySourcePath = targetExists ? targetPath : primaryTemplatePath;
+  const primarySource     = readFileSync(primarySourcePath, 'utf8');
+  const lineEnding        = primarySource.includes('\r\n') ? '\r\n' : '\n';
+  const renderedPrimary   = render(primarySource, primarySourcePath, replacements, lineEnding);
+  const renderedCompanions = companionFiles.map((file) => ({
+    ...file,
+    content: render(readFileSync(file.templatePath, 'utf8'), file.templatePath, replacements, lineEnding),
+  }));
+
+  if (targetExists) {
+    writeFileSync(targetPath, renderedPrimary, 'utf8');
+    if (finalizedPath !== targetPath) {
+      mkdirSync(dirname(finalizedPath), { recursive: true });
+      renameSync(targetPath, finalizedPath);
+    }
+  } else {
+    mkdirSync(dirname(finalizedPath), { recursive: true });
+    writeFileSync(finalizedPath, renderedPrimary, { encoding: 'utf8', flag: 'wx' });
+  }
+  for (const file of renderedCompanions) {
+    mkdirSync(dirname(file.path), { recursive: true });
+    writeFileSync(file.path, file.content, { encoding: 'utf8', flag: 'wx' });
+  }
+
+  return {
+    companions: companionFiles.map((file) => file.path),
+    path      : finalizedPath,
+    projectRoot,
+  };
 }
 
-process.stdout.write(`Scaffold finalized: ${relative(workspaceRoot, finalizedPath)}\n`);
+function main() {
+  const options = parseArguments(process.argv.slice(2));
+  const result  = finalizeScaffold(options);
+  process.stdout.write(`Scaffold finalized: ${relative(result.projectRoot, result.path)}\n`);
+}
+
+if (process.argv[1] && resolve(process.argv[1]) === scriptPath) main();
