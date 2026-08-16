@@ -1,0 +1,243 @@
+{
+    "version": "0.0.0+1",
+    "name": "react-native-scripts",
+    "description": "A React Native Scripts project",
+    "title": "React Native Scripts",
+    "rules": {
+        "global": ["flag", "type", "required", "description"],
+        "string": ["allowed_regex"],
+        "array": ["allowed_values"],
+        "object": ["required_keys"],
+        "number": ["min", "max"],
+        "boolean": []
+    },
+    "config": {
+
+        "scaffold": {
+
+            "screen": {
+                "args": [
+                    {
+                        "flag": "name",
+                        "type": "string",
+                        "required": true,
+                        "allowed_regex": "^[a-z]+(-[a-z]+)*$",
+                        "description": "The screen name; kebab-case is recommended"
+                    }
+                ],
+                "path": "${root}/src/screens",
+                "template": "${root}/templates/screen.template.tsx",
+                "filename": "${screen.args.name}.screen.tsx",
+
+                "message-success": "Screen created and normalized successfully",
+                "message-error": "Error creating screen: ${error}",
+                "message-exists": "Screen already exists at ${screen.path}/${screen.filename}",
+                "message-invalid-args": "Provide a lowercase screen name, preferably kebab-case (e.g., 'user-profile')",
+                "message-invalid-path": "Invalid path provided for screen creation",
+                "message-invalid-template": "Invalid template provided for screen creation",
+                "command-after-success": [
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"screen\" \"${screen.path}/${screen.filename}\" \"${screen.args.name}\""
+                ]
+            },
+
+            "layout": {
+                "args": [
+                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                ],
+                "path": "${root}/src/layouts",
+                "template": "${root}/templates/layout.template.tsx",
+                "filename": "${layout.args.name}.layout.tsx",
+                "message-success": "Layout and companion files created successfully",
+                "message-error": "Error creating layout: ${error}",
+                "message-exists": "Layout already exists at ${layout.path}/${layout.filename}",
+                "message-invalid-args": "Provide a lowercase layout name, preferably kebab-case",
+                "message-invalid-path": "Invalid layout path",
+                "message-invalid-template": "Invalid layout template",
+                "command-after-success": [
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"layout\" \"${layout.path}/${layout.filename}\" \"${layout.args.name}\""
+                ]
+            },
+
+            "widget": {
+                "args": [
+                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                ],
+                "path": "${root}/src/components/widgets",
+                "template": "${root}/templates/widget.template.tsx",
+                "filename": "${widget.args.name}.widget.tsx",
+                "message-success": "Widget created successfully",
+                "message-error": "Error creating widget: ${error}",
+                "message-exists": "Widget already exists at ${widget.path}/${widget.filename}",
+                "message-invalid-args": "Provide a lowercase widget name, preferably kebab-case",
+                "message-invalid-path": "Invalid widget path",
+                "message-invalid-template": "Invalid widget template",
+                "command-after-success": [
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"widget\" \"${widget.path}/${widget.filename}\" \"${widget.args.name}\""
+                ]
+            },
+
+            "apiEndpoint": {
+                "args": [
+                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                ],
+                "path": "${root}/src/apis/endpoint",
+                "template": "${root}/templates/api-endpoint.template.ts",
+                "filename": "ping.${apiEndpoint.args.name}.api.ts",
+                "message-success": "GET ping endpoint created successfully",
+                "message-error": "Error creating API endpoint: ${error}",
+                "message-exists": "API endpoint staging file already exists",
+                "message-invalid-args": "Provide a lowercase API resource name, preferably kebab-case",
+                "message-invalid-path": "Invalid API endpoint path",
+                "message-invalid-template": "Invalid API endpoint template",
+                "command-after-success": [
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"apiEndpoint\" \"${apiEndpoint.path}/${apiEndpoint.filename}\" \"${apiEndpoint.args.name}\""
+                ]
+            },
+
+            "apiModel": {
+                "args": [
+                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                ],
+                "path": "${root}/src/apis/models",
+                "template": "${root}/templates/api-model.template.ts",
+                "filename": "${apiModel.args.name}.model.ts",
+                "message-success": "API model and GET ping endpoint created successfully",
+                "message-error": "Error creating API model: ${error}",
+                "message-exists": "API model already exists at ${apiModel.path}/${apiModel.filename}",
+                "message-invalid-args": "Provide a lowercase API resource name, preferably kebab-case",
+                "message-invalid-path": "Invalid API model path",
+                "message-invalid-template": "Invalid API model template",
+                "command-after-success": [
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"apiModel\" \"${apiModel.path}/${apiModel.filename}\" \"${apiModel.args.name}\""
+                ]
+            },
+
+            "service": {
+                "args": [
+                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                ],
+                "path": "${root}/src/core/services",
+                "template": "${root}/templates/service.template.ts",
+                "filename": "${service.args.name}.service.ts",
+                "message-success": "Service created successfully",
+                "message-error": "Error creating service: ${error}",
+                "message-exists": "Service already exists at ${service.path}/${service.filename}",
+                "message-invalid-args": "Provide a lowercase service name, preferably kebab-case",
+                "message-invalid-path": "Invalid service path",
+                "message-invalid-template": "Invalid service template",
+                "command-after-success": [
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"service\" \"${service.path}/${service.filename}\" \"${service.args.name}\""
+                ]
+            },
+
+            "storage": {
+                "args": [
+                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                ],
+                "path": "${root}/src/core/storages",
+                "template": "${root}/templates/storage.template.ts",
+                "filename": "${storage.args.name}.storage.ts",
+                "message-success": "Storage created successfully",
+                "message-error": "Error creating storage: ${error}",
+                "message-exists": "Storage already exists at ${storage.path}/${storage.filename}",
+                "message-invalid-args": "Provide a lowercase storage name, preferably kebab-case",
+                "message-invalid-path": "Invalid storage path",
+                "message-invalid-template": "Invalid storage template",
+                "command-after-success": [
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"storage\" \"${storage.path}/${storage.filename}\" \"${storage.args.name}\""
+                ]
+            },
+
+            "utility": {
+                "args": [
+                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                ],
+                "path": "${root}/src/core/utilities",
+                "template": "${root}/templates/utility.template.ts",
+                "filename": "${utility.args.name}.utility.ts",
+                "message-success": "Utility created successfully",
+                "message-error": "Error creating utility: ${error}",
+                "message-exists": "Utility already exists at ${utility.path}/${utility.filename}",
+                "message-invalid-args": "Provide a lowercase utility name, preferably kebab-case",
+                "message-invalid-path": "Invalid utility path",
+                "message-invalid-template": "Invalid utility template",
+                "command-after-success": [
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"utility\" \"${utility.path}/${utility.filename}\" \"${utility.args.name}\""
+                ]
+            },
+
+            "state": {
+                "args": [
+                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                ],
+                "path": "${root}/src/core/states",
+                "template": "${root}/templates/state.template.ts",
+                "filename": "${state.args.name}.state.ts",
+                "message-success": "State created successfully",
+                "message-error": "Error creating state: ${error}",
+                "message-exists": "State already exists at ${state.path}/${state.filename}",
+                "message-invalid-args": "Provide a lowercase state name, preferably kebab-case",
+                "message-invalid-path": "Invalid state path",
+                "message-invalid-template": "Invalid state template",
+                "command-after-success": [
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"state\" \"${state.path}/${state.filename}\" \"${state.args.name}\""
+                ]
+            },
+
+            "manager": {
+                "args": [
+                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                ],
+                "path": "${root}/src/core/managers",
+                "template": "${root}/templates/manager.template.ts",
+                "filename": "${manager.args.name}.manager.ts",
+                "message-success": "Manager created successfully",
+                "message-error": "Error creating manager: ${error}",
+                "message-exists": "Manager already exists at ${manager.path}/${manager.filename}",
+                "message-invalid-args": "Provide a lowercase manager name, preferably kebab-case",
+                "message-invalid-path": "Invalid manager path",
+                "message-invalid-template": "Invalid manager template",
+                "command-after-success": [
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"manager\" \"${manager.path}/${manager.filename}\" \"${manager.args.name}\""
+                ]
+            },
+
+            "constant": {
+                "args": [
+                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                ],
+                "path": "${root}/src/core/constants",
+                "template": "${root}/templates/constant.template.ts",
+                "filename": "${constant.args.name}.constant.ts",
+                "message-success": "Constant created successfully",
+                "message-error": "Error creating constant: ${error}",
+                "message-exists": "Constant already exists at ${constant.path}/${constant.filename}",
+                "message-invalid-args": "Provide a lowercase constant name, preferably kebab-case",
+                "message-invalid-path": "Invalid constant path",
+                "message-invalid-template": "Invalid constant template",
+                "command-after-success": [
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"constant\" \"${constant.path}/${constant.filename}\" \"${constant.args.name}\""
+                ]
+            },
+
+            "enum": {
+                "args": [
+                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                ],
+                "path": "${root}/src/core/enums",
+                "template": "${root}/templates/enum.template.ts",
+                "filename": "${enum.args.name}.enum.ts",
+                "message-success": "Enum created successfully",
+                "message-error": "Error creating enum: ${error}",
+                "message-exists": "Enum already exists at ${enum.path}/${enum.filename}",
+                "message-invalid-args": "Provide a lowercase enum name, preferably kebab-case",
+                "message-invalid-path": "Invalid enum path",
+                "message-invalid-template": "Invalid enum template",
+                "command-after-success": [
+                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" \"enum\" \"${enum.path}/${enum.filename}\" \"${enum.args.name}\""
+                ]
+            }
+
+        }
+    }
+}
