@@ -1,8 +1,8 @@
 {
     "version": "0.0.0+1",
-    "name": "react-native-structure",
-    "description": "A React Native Structure project",
-    "title": "React Native Structure",
+    "name": "react-native-script",
+    "description": "A React Native Script project",
+    "title": "React Native Script",
     "rules": {
         "global": ["flag", "type", "required", "description"],
         "string": ["allowed_regex"],
