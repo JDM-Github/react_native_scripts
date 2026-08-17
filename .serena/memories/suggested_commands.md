@@ -1,0 +1,4 @@
+- Run a scaffold finalization directly: `node scripts/finalize-scaffold-template.mjs --kind <kind> --name <kebab-name> --project-root <path> [--target <staged-file>]`.
+- Inspect worktree on Windows: `git status --short`; inspect edits: `git diff -- scripts/finalize-scaffold-template.mjs`.
+- Refresh the required repository graph after code edits: `graphify update .`.
+- There is no package-script test/lint/build command because the repository has no package manifest.

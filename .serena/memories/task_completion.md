@@ -1,0 +1,5 @@
+- Run `graphify update .` after every code edit.
+- Run the edited script against a disposable project root that does not yet exist and confirm the expected generated file appears.
+- Confirm the source template under tool-root `templates/` is unchanged.
+- Run Serena diagnostics on the edited file and inspect the focused git diff.
+- No repository test runner, linter, formatter, or type-checker is configured.

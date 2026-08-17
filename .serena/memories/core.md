@@ -1,0 +1,5 @@
+- Small scaffold-tool repository: `ikaika.script.json` defines 12 React Native scaffold kinds and invokes `scripts/finalize-scaffold-template.mjs` after staging.
+- `scripts/finalize-scaffold-template.mjs` owns name normalization, output-path safety, rendering, companion generation, and final writes.
+- Source templates live under tool-root `templates/`; generated outputs are rooted at the caller-supplied project root.
+- Templates are inputs and are never synthesized; output directories are created recursively as needed.
+- See `mem:tech_stack` for runtime details and `mem:task_completion` for verification.

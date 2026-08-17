@@ -1,0 +1,23 @@
+{
+  "0": "finalize-scaffold-template.mjs",
+  "1": "Change Summary -- 2026-08-16 23:40:02 UTC to 2026-08-16 23:40:32 UTC",
+  "2": "Serena Project Configuration",
+  "3": "main",
+  "4": "segmentKnownWords",
+  "5": "api-endpoint.template.ts",
+  "6": "api-model.template.ts",
+  "7": "constant.template.ts",
+  "8": "enum.template.ts",
+  "9": "layout-controller.template.ts",
+  "10": "layout.template.tsx",
+  "11": "manager.template.ts",
+  "12": "Templates Documentation",
+  "13": "screen-controller.template.ts",
+  "14": "screen.template.tsx",
+  "15": "service.template.ts",
+  "16": "state.template.ts",
+  "17": "storage.template.ts",
+  "18": "utility.template.ts",
+  "19": "widget.template.tsx",
+  "20": "Change Summary -- 2026-08-16 23:41:57 UTC to 2026-08-16 23:42:17 UTC"
+}

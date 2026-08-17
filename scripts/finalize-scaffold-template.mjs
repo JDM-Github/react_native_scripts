@@ -160,8 +160,8 @@ export function finalizeScaffold({ kind, name: rawName, projectRoot: projectRoot
 
   if (!definition) throw new Error(`Unknown scaffold kind: ${kind ?? ''}`);
   if (!rawName) throw new Error('A scaffold name is required.');
-  if (!existsSync(projectRoot) || !statSync(projectRoot).isDirectory()) {
-    throw new Error(`Project root does not exist or is not a directory: ${projectRoot}`);
+  if (existsSync(projectRoot) && !statSync(projectRoot).isDirectory()) {
+    throw new Error(`Project root is not a directory: ${projectRoot}`);
   }
 
   const words      = splitName(rawName);

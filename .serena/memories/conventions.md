@@ -1,0 +1,5 @@
+- Keep templates resolved from `templatesRoot = resolve(toolRoot, 'templates')`; never resolve them relative to the target project.
+- Keep all generated paths inside the resolved project root and each primary output inside its scaffold kind's allowed root.
+- Create destination parent directories recursively immediately before writes/moves.
+- Use exclusive writes (`flag: 'wx'`) for newly generated files and reject pre-existing non-staged outputs.
+- Scaffold names normalize to kebab case for filenames and PascalCase/title placeholders for rendered content.

@@ -1,0 +1,3 @@
+- Node.js ES module script (`.mjs`) using built-in filesystem/path/URL APIs; no package manifest or third-party runtime dependencies.
+- Generated artifacts are React Native TypeScript/TSX templates.
+- Scaffold orchestration/configuration is stored in `ikaika.script.json`.

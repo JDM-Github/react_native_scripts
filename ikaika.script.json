@@ -26,7 +26,7 @@
                     }
                 ],
                 "path": "${root}/src/screens",
-                "template": "${root}/templates/screen.template.tsx",
+                "template": "templates/screen.template.tsx",
                 "filename": "${screen.args.name}.screen.tsx",
 
                 "message-success": "Screen created and normalized successfully",
@@ -36,7 +36,7 @@
                 "message-invalid-path": "Invalid path provided for screen creation",
                 "message-invalid-template": "Invalid template provided for screen creation",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"screen\" --target \"${screen.path}/${screen.filename}\" --name \"${screen.args.name}\" --project-root \"${root}\""
+                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"screen\" --target \"${screen.path}/${screen.filename}\" --name \"${screen.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -45,7 +45,7 @@
                     { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/layouts",
-                "template": "${root}/templates/layout.template.tsx",
+                "template": "templates/layout.template.tsx",
                 "filename": "${layout.args.name}.layout.tsx",
                 "message-success": "Layout and companion files created successfully",
                 "message-error": "Error creating layout: ${error}",
@@ -54,7 +54,7 @@
                 "message-invalid-path": "Invalid layout path",
                 "message-invalid-template": "Invalid layout template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"layout\" --target \"${layout.path}/${layout.filename}\" --name \"${layout.args.name}\" --project-root \"${root}\""
+                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"layout\" --target \"${layout.path}/${layout.filename}\" --name \"${layout.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -63,7 +63,7 @@
                     { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/components/widgets",
-                "template": "${root}/templates/widget.template.tsx",
+                "template": "templates/widget.template.tsx",
                 "filename": "${widget.args.name}.widget.tsx",
                 "message-success": "Widget created successfully",
                 "message-error": "Error creating widget: ${error}",
@@ -72,7 +72,7 @@
                 "message-invalid-path": "Invalid widget path",
                 "message-invalid-template": "Invalid widget template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"widget\" --target \"${widget.path}/${widget.filename}\" --name \"${widget.args.name}\" --project-root \"${root}\""
+                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"widget\" --target \"${widget.path}/${widget.filename}\" --name \"${widget.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -81,7 +81,7 @@
                     { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/apis/endpoint",
-                "template": "${root}/templates/api-endpoint.template.ts",
+                "template": "templates/api-endpoint.template.ts",
                 "filename": "ping.${apiEndpoint.args.name}.api.ts",
                 "message-success": "GET ping endpoint created successfully",
                 "message-error": "Error creating API endpoint: ${error}",
@@ -90,7 +90,7 @@
                 "message-invalid-path": "Invalid API endpoint path",
                 "message-invalid-template": "Invalid API endpoint template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"apiEndpoint\" --target \"${apiEndpoint.path}/${apiEndpoint.filename}\" --name \"${apiEndpoint.args.name}\" --project-root \"${root}\""
+                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"apiEndpoint\" --target \"${apiEndpoint.path}/${apiEndpoint.filename}\" --name \"${apiEndpoint.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -99,7 +99,7 @@
                     { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/apis/models",
-                "template": "${root}/templates/api-model.template.ts",
+                "template": "templates/api-model.template.ts",
                 "filename": "${apiModel.args.name}.model.ts",
                 "message-success": "API model and GET ping endpoint created successfully",
                 "message-error": "Error creating API model: ${error}",
@@ -108,7 +108,7 @@
                 "message-invalid-path": "Invalid API model path",
                 "message-invalid-template": "Invalid API model template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"apiModel\" --target \"${apiModel.path}/${apiModel.filename}\" --name \"${apiModel.args.name}\" --project-root \"${root}\""
+                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"apiModel\" --target \"${apiModel.path}/${apiModel.filename}\" --name \"${apiModel.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -117,7 +117,7 @@
                     { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/core/services",
-                "template": "${root}/templates/service.template.ts",
+                "template": "templates/service.template.ts",
                 "filename": "${service.args.name}.service.ts",
                 "message-success": "Service created successfully",
                 "message-error": "Error creating service: ${error}",
@@ -126,7 +126,7 @@
                 "message-invalid-path": "Invalid service path",
                 "message-invalid-template": "Invalid service template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"service\" --target \"${service.path}/${service.filename}\" --name \"${service.args.name}\" --project-root \"${root}\""
+                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"service\" --target \"${service.path}/${service.filename}\" --name \"${service.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -135,7 +135,7 @@
                     { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/core/storages",
-                "template": "${root}/templates/storage.template.ts",
+                "template": "templates/storage.template.ts",
                 "filename": "${storage.args.name}.storage.ts",
                 "message-success": "Storage created successfully",
                 "message-error": "Error creating storage: ${error}",
@@ -144,7 +144,7 @@
                 "message-invalid-path": "Invalid storage path",
                 "message-invalid-template": "Invalid storage template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"storage\" --target \"${storage.path}/${storage.filename}\" --name \"${storage.args.name}\" --project-root \"${root}\""
+                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"storage\" --target \"${storage.path}/${storage.filename}\" --name \"${storage.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -153,7 +153,7 @@
                     { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/core/utilities",
-                "template": "${root}/templates/utility.template.ts",
+                "template": "templates/utility.template.ts",
                 "filename": "${utility.args.name}.utility.ts",
                 "message-success": "Utility created successfully",
                 "message-error": "Error creating utility: ${error}",
@@ -162,7 +162,7 @@
                 "message-invalid-path": "Invalid utility path",
                 "message-invalid-template": "Invalid utility template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"utility\" --target \"${utility.path}/${utility.filename}\" --name \"${utility.args.name}\" --project-root \"${root}\""
+                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"utility\" --target \"${utility.path}/${utility.filename}\" --name \"${utility.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -171,7 +171,7 @@
                     { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/core/states",
-                "template": "${root}/templates/state.template.ts",
+                "template": "templates/state.template.ts",
                 "filename": "${state.args.name}.state.ts",
                 "message-success": "State created successfully",
                 "message-error": "Error creating state: ${error}",
@@ -180,7 +180,7 @@
                 "message-invalid-path": "Invalid state path",
                 "message-invalid-template": "Invalid state template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"state\" --target \"${state.path}/${state.filename}\" --name \"${state.args.name}\" --project-root \"${root}\""
+                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"state\" --target \"${state.path}/${state.filename}\" --name \"${state.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -189,7 +189,7 @@
                     { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/core/managers",
-                "template": "${root}/templates/manager.template.ts",
+                "template": "templates/manager.template.ts",
                 "filename": "${manager.args.name}.manager.ts",
                 "message-success": "Manager created successfully",
                 "message-error": "Error creating manager: ${error}",
@@ -198,7 +198,7 @@
                 "message-invalid-path": "Invalid manager path",
                 "message-invalid-template": "Invalid manager template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"manager\" --target \"${manager.path}/${manager.filename}\" --name \"${manager.args.name}\" --project-root \"${root}\""
+                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"manager\" --target \"${manager.path}/${manager.filename}\" --name \"${manager.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -207,7 +207,7 @@
                     { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/core/constants",
-                "template": "${root}/templates/constant.template.ts",
+                "template": "templates/constant.template.ts",
                 "filename": "${constant.args.name}.constant.ts",
                 "message-success": "Constant created successfully",
                 "message-error": "Error creating constant: ${error}",
@@ -216,7 +216,7 @@
                 "message-invalid-path": "Invalid constant path",
                 "message-invalid-template": "Invalid constant template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"constant\" --target \"${constant.path}/${constant.filename}\" --name \"${constant.args.name}\" --project-root \"${root}\""
+                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"constant\" --target \"${constant.path}/${constant.filename}\" --name \"${constant.args.name}\" --project-root \"${root}\""
                 ]
             },
 
@@ -225,7 +225,7 @@
                     { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/core/enums",
-                "template": "${root}/templates/enum.template.ts",
+                "template": "templates/enum.template.ts",
                 "filename": "${enum.args.name}.enum.ts",
                 "message-success": "Enum created successfully",
                 "message-error": "Error creating enum: ${error}",
@@ -234,7 +234,7 @@
                 "message-invalid-path": "Invalid enum path",
                 "message-invalid-template": "Invalid enum template",
                 "command-after-success": [
-                    "node \"${root}/scripts/finalize-scaffold-template.mjs\" --kind \"enum\" --target \"${enum.path}/${enum.filename}\" --name \"${enum.args.name}\" --project-root \"${root}\""
+                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"enum\" --target \"${enum.path}/${enum.filename}\" --name \"${enum.args.name}\" --project-root \"${root}\""
                 ]
             }
 
