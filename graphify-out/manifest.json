@@ -1,7 +1,7 @@
 {
   "ikaika.script.json": {
-    "mtime": 1787018424.5496774,
-    "ast_hash": "57d0d86d2852564bf68fdb6682fc5fee",
+    "mtime": 1787018668.114054,
+    "ast_hash": "3c162c769723229cd2529e9caafd57ef",
     "semantic_hash": ""
   },
   "scripts/finalize-scaffold-template.mjs": {
@@ -90,8 +90,8 @@
     "semantic_hash": "991096582117210425b4f73ba80cc07d"
   },
   "templates/README.md": {
-    "mtime": 1787018512.0868406,
-    "ast_hash": "cfe309490b374fcb148e4c11c25086b2",
+    "mtime": 1787018835.2653513,
+    "ast_hash": "ea56579c5aa8b97905b7a8447c658d59",
     "semantic_hash": ""
   },
   "changes/session-2026-08-16_23-40-02_UTC_to_2026-08-16_23-40-32_UTC.md": {
@@ -105,8 +105,8 @@
     "semantic_hash": ""
   },
   ".serena/memories/conventions.md": {
-    "mtime": 1786992196.61987,
-    "ast_hash": "55b25455ce7943a84836af2da6491eaf",
+    "mtime": 1787018835.2653513,
+    "ast_hash": "669c119a8ded4159bb574d91ba4f04b7",
     "semantic_hash": ""
   },
   ".serena/memories/core.md": {
@@ -127,6 +127,11 @@
   ".serena/memories/tech_stack.md": {
     "mtime": 1786992191.500228,
     "ast_hash": "f638a08850c5ebdc7ae391d894742d3f",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1787018824.0995202,
+    "ast_hash": "159d12cd81c06c01ac2d50db5b9f1375",
     "semantic_hash": ""
   }
 }

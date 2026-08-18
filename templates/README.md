@@ -34,9 +34,10 @@ for unusual or ambiguous names.
 | `constant` | `src/core/constants/<name>.constant.ts` | — |
 | `enum` | `src/core/enums/<name>.enum.ts` | Frozen object plus union type |
 
-Screen and layout companion files are created together. If any normalized
-destination already exists, finalization stops instead of overwriting it. API
-model generation applies the same collision rule to its automatic ping endpoint.
+Screen and layout companion files are created alongside the primary file. A
+companion that already exists is kept rather than regenerated; a primary output
+that already exists stops finalization unless `--overwrite` is passed. See the
+flags described at the end of this file.
 
 ## Generated structure
 

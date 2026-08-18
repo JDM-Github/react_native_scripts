@@ -1,12 +1,12 @@
 {
   "ikaika.script.json": {
-    "mtime": 1786991619.2950244,
-    "ast_hash": "d25f59958b144385994c2bd3b3799404",
-    "semantic_hash": "d25f59958b144385994c2bd3b3799404"
+    "mtime": 1787018668.114054,
+    "ast_hash": "3c162c769723229cd2529e9caafd57ef",
+    "semantic_hash": ""
   },
   "scripts/finalize-scaffold-template.mjs": {
-    "mtime": 1786992132.9110644,
-    "ast_hash": "f983220ee217f3d04aaaf4f39e8626a0",
+    "mtime": 1787018355.859023,
+    "ast_hash": "6285d228299517ea26a70e5d72e006e1",
     "semantic_hash": ""
   },
   "templates/api-endpoint.template.ts": {
@@ -90,9 +90,9 @@
     "semantic_hash": "991096582117210425b4f73ba80cc07d"
   },
   "templates/README.md": {
-    "mtime": 1786920397.3777397,
-    "ast_hash": "b9781d9725d4cd6ed13eba834e52a4cb",
-    "semantic_hash": "b9781d9725d4cd6ed13eba834e52a4cb"
+    "mtime": 1787018512.0868406,
+    "ast_hash": "cfe309490b374fcb148e4c11c25086b2",
+    "semantic_hash": ""
   },
   "changes/session-2026-08-16_23-40-02_UTC_to_2026-08-16_23-40-32_UTC.md": {
     "mtime": 1786923650.74417,
@@ -127,6 +127,11 @@
   ".serena/memories/tech_stack.md": {
     "mtime": 1786992191.500228,
     "ast_hash": "f638a08850c5ebdc7ae391d894742d3f",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1787018674.1586325,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": ""
   }
 }

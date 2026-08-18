@@ -1,5 +1,6 @@
 - Keep templates resolved from `templatesRoot = resolve(toolRoot, 'templates')`; never resolve them relative to the target project.
 - Keep all generated paths inside the resolved project root and each primary output inside its scaffold kind's allowed root.
 - Create destination parent directories recursively immediately before writes/moves.
-- Use exclusive writes (`flag: 'wx'`) for newly generated files and reject pre-existing non-staged outputs.
+- Use exclusive writes (`flag: 'wx'`) for newly generated files.
+- Collision policy: keep pre-existing companions, refuse a pre-existing primary output unless `--overwrite`; `--skip-companions` generates the primary output alone. Never abort a run over a companion that already exists — the caller deletes the staged file on failure, so that loses the primary output too.
 - Scaffold names normalize to kebab case for filenames and PascalCase/title placeholders for rendered content.

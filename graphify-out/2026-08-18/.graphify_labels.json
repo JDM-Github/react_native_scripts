@@ -2,7 +2,7 @@
   "0": "finalize-scaffold-template.mjs",
   "1": "Change Summary -- 2026-08-16 23:40:02 UTC to 2026-08-16 23:40:32 UTC",
   "2": "Serena Project Configuration",
-  "3": "main",
+  "3": "parseArguments",
   "4": "segmentKnownWords",
   "5": "api-endpoint.template.ts",
   "6": "api-model.template.ts",
@@ -24,5 +24,7 @@
   "22": "core.md",
   "23": "suggested_commands.md",
   "24": "task_completion.md",
-  "25": "tech_stack.md"
+  "25": "tech_stack.md",
+  "26": "finalizeScaffold",
+  "27": "CLAUDE.md"
 }

@@ -21,8 +21,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "scripts_finalize_scaffold_template_known_name_words",
-      "community": 4,
-      "community_name": "segmentKnownWords",
+      "community": 0,
+      "community_name": "finalize-scaffold-template.mjs",
       "norm_label": "known_name_words"
     },
     {
@@ -121,8 +121,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "scripts_finalize_scaffold_template_isinside",
-      "community": 26,
-      "community_name": "finalizeScaffold",
+      "community": 0,
+      "community_name": "finalize-scaffold-template.mjs",
       "norm_label": "isinside()"
     },
     {
@@ -133,8 +133,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "scripts_finalize_scaffold_template_segmentknownwords",
-      "community": 4,
-      "community_name": "segmentKnownWords",
+      "community": 0,
+      "community_name": "finalize-scaffold-template.mjs",
       "norm_label": "segmentknownwords()"
     },
     {
@@ -145,8 +145,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "scripts_finalize_scaffold_template_splitname",
-      "community": 4,
-      "community_name": "segmentKnownWords",
+      "community": 0,
+      "community_name": "finalize-scaffold-template.mjs",
       "norm_label": "splitname()"
     },
     {
@@ -157,8 +157,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "scripts_finalize_scaffold_template_primarypath",
-      "community": 26,
-      "community_name": "finalizeScaffold",
+      "community": 0,
+      "community_name": "finalize-scaffold-template.mjs",
       "norm_label": "primarypath()"
     },
     {
@@ -169,8 +169,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "scripts_finalize_scaffold_template_companions",
-      "community": 26,
-      "community_name": "finalizeScaffold",
+      "community": 0,
+      "community_name": "finalize-scaffold-template.mjs",
       "norm_label": "companions()"
     },
     {
@@ -241,8 +241,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "scripts_finalize_scaffold_template_finalizescaffold",
-      "community": 26,
-      "community_name": "finalizeScaffold",
+      "community": 0,
+      "community_name": "finalize-scaffold-template.mjs",
       "norm_label": "finalizescaffold()"
     },
     {
@@ -253,8 +253,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "scripts_finalize_scaffold_template_main",
-      "community": 26,
-      "community_name": "finalizeScaffold",
+      "community": 0,
+      "community_name": "finalize-scaffold-template.mjs",
       "norm_label": "main()"
     },
     {
@@ -465,6 +465,105 @@
       "community": 25,
       "community_name": "tech_stack.md",
       "norm_label": "tech_stack.md"
+    },
+    {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude",
+      "community": 27,
+      "community_name": "CLAUDE.md",
+      "norm_label": "claude.md"
+    },
+    {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude_claude_md",
+      "community": 27,
+      "community_name": "CLAUDE.md",
+      "norm_label": "claude.md"
+    },
+    {
+      "label": "What this repository is",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "claude_what_this_repository_is",
+      "community": 27,
+      "community_name": "CLAUDE.md",
+      "norm_label": "what this repository is"
+    },
+    {
+      "label": "Layout",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "claude_layout",
+      "community": 27,
+      "community_name": "CLAUDE.md",
+      "norm_label": "layout"
+    },
+    {
+      "label": "How one scaffold actually runs",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "claude_how_one_scaffold_actually_runs",
+      "community": 27,
+      "community_name": "CLAUDE.md",
+      "norm_label": "how one scaffold actually runs"
+    },
+    {
+      "label": "The template convention",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L45",
+      "_origin": "ast",
+      "id": "claude_the_template_convention",
+      "community": 27,
+      "community_name": "CLAUDE.md",
+      "norm_label": "the template convention"
+    },
+    {
+      "label": "Finalizer invariants",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "claude_finalizer_invariants",
+      "community": 27,
+      "community_name": "CLAUDE.md",
+      "norm_label": "finalizer invariants"
+    },
+    {
+      "label": "Adding a scaffold kind",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L88",
+      "_origin": "ast",
+      "id": "claude_adding_a_scaffold_kind",
+      "community": 27,
+      "community_name": "CLAUDE.md",
+      "norm_label": "adding a scaffold kind"
+    },
+    {
+      "label": "Verifying a change",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L105",
+      "_origin": "ast",
+      "id": "claude_verifying_a_change",
+      "community": 27,
+      "community_name": "CLAUDE.md",
+      "norm_label": "verifying a change"
     },
     {
       "label": "session-2026-08-16_23-40-02_UTC_to_2026-08-16_23-40-32_UTC.md",
@@ -1080,6 +1179,94 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "claude",
+      "target": "claude_claude_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L88",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "claude_claude_md",
+      "target": "claude_adding_a_scaffold_kind",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "claude_claude_md",
+      "target": "claude_finalizer_invariants",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "claude_claude_md",
+      "target": "claude_how_one_scaffold_actually_runs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "claude_claude_md",
+      "target": "claude_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L45",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "claude_claude_md",
+      "target": "claude_the_template_convention",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L105",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "claude_claude_md",
+      "target": "claude_verifying_a_change",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "claude_claude_md",
+      "target": "claude_what_this_repository_is",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "changes/session-2026-08-16_23-40-02_UTC_to_2026-08-16_23-40-32_UTC.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -1185,5 +1372,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "b8a571614e1100ccf56a3be45a1c4c7b93028303"
+  "built_at_commit": "a806435061ba4045db588c0b55a74e3daf895cc6"
 }
