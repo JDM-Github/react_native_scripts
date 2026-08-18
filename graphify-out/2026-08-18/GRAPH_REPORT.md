@@ -1,12 +1,12 @@
 # Graph Report - react_native_scripts  (2026-08-18)
 
 ## Corpus Check
-- 25 files · ~5,664 words
+- 25 files · ~5,249 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 55 nodes · 50 edges · 27 communities (26 shown, 1 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.8)
+- 50 nodes · 37 edges · 26 communities (25 shown, 1 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
@@ -18,23 +18,22 @@
 - finalize-scaffold-template.mjs
 - Change Summary -- 2026-08-16 23:40:02 UTC to 2026-08-16 23:40:32 UTC
 - Serena Project Configuration
-- parseArguments
+- main
 - segmentKnownWords
 - Templates Documentation
 - Change Summary -- 2026-08-16 23:41:57 UTC to 2026-08-16 23:42:17 UTC
-- finalizeScaffold
 
 ## God Nodes (most connected - your core abstractions)
-1. `parseArguments()` - 8 edges
-2. `finalizeScaffold()` - 7 edges
-3. `booleanValue()` - 5 edges
-4. `Change Summary -- 2026-08-16 23:40:02 UTC to 2026-08-16 23:40:32 UTC` - 4 edges
-5. `Change Summary -- 2026-08-16 23:41:57 UTC to 2026-08-16 23:42:17 UTC` - 4 edges
-6. `TRUE_WORDS` - 3 edges
-7. `FALSE_WORDS` - 3 edges
-8. `segmentKnownWords()` - 3 edges
-9. `splitName()` - 3 edges
-10. `render()` - 3 edges
+1. `finalizeScaffold()` - 7 edges
+2. `Change Summary -- 2026-08-16 23:40:02 UTC to 2026-08-16 23:40:32 UTC` - 4 edges
+3. `Change Summary -- 2026-08-16 23:41:57 UTC to 2026-08-16 23:42:17 UTC` - 4 edges
+4. `segmentKnownWords()` - 3 edges
+5. `splitName()` - 3 edges
+6. `render()` - 3 edges
+7. `parseArguments()` - 3 edges
+8. `main()` - 3 edges
+9. `KNOWN_NAME_WORDS` - 2 edges
+10. `isInside()` - 2 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Memory Maintenance Guide` --conceptually_related_to--> `Serena Project Configuration`  [INFERRED]
@@ -43,11 +42,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (27 total, 1 thin omitted)
+## Communities (26 total, 1 thin omitted)
 
 ### Community 0 - "finalize-scaffold-template.mjs"
-Cohesion: 0.33
-Nodes (6): render(), SCAFFOLD_DEFINITIONS, scriptPath, templatesRoot, toolRoot, unwrap()
+Cohesion: 0.27
+Nodes (10): companions(), finalizeScaffold(), isInside(), primaryPath(), render(), SCAFFOLD_DEFINITIONS, scriptPath, templatesRoot (+2 more)
 
 ### Community 1 - "Change Summary -- 2026-08-16 23:40:02 UTC to 2026-08-16 23:40:32 UTC"
 Cohesion: 0.40
@@ -57,9 +56,9 @@ Nodes (4): Change Summary -- 2026-08-16 23:40:02 UTC to 2026-08-16 23:40:32 UTC,
 Cohesion: 0.67
 Nodes (3): React Native Scripts Project, Memory Maintenance Guide, Serena Project Configuration
 
-### Community 3 - "parseArguments"
-Cohesion: 0.43
-Nodes (7): BOOLEAN_FLAGS, booleanValue(), booleanWord(), FALSE_WORDS, parseArguments(), TRUE_WORDS, VALUE_FLAGS
+### Community 3 - "main"
+Cohesion: 0.67
+Nodes (3): flagValue(), main(), parseArguments()
 
 ### Community 4 - "segmentKnownWords"
 Cohesion: 0.67
@@ -69,10 +68,6 @@ Nodes (3): KNOWN_NAME_WORDS, segmentKnownWords(), splitName()
 Cohesion: 0.40
 Nodes (4): Change Summary -- 2026-08-16 23:41:57 UTC to 2026-08-16 23:42:17 UTC, Key Changes, Overview, Risks / Follow-ups
 
-### Community 26 - "finalizeScaffold"
-Cohesion: 0.40
-Nodes (5): companions(), finalizeScaffold(), isInside(), main(), primaryPath()
-
 ## Knowledge Gaps
 - **13 isolated node(s):** `scriptPath`, `toolRoot`, `templatesRoot`, `SCAFFOLD_DEFINITIONS`, `Overview` (+8 more)
   These have ≤1 connection - possible missing edges or undocumented components.
@@ -81,9 +76,7 @@ Nodes (5): companions(), finalizeScaffold(), isInside(), main(), primaryPath()
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `parseArguments()` connect `parseArguments` to `finalize-scaffold-template.mjs`, `finalizeScaffold`?**
+- **Why does `finalizeScaffold()` connect `finalize-scaffold-template.mjs` to `main`, `segmentKnownWords`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
-- **Why does `finalizeScaffold()` connect `finalizeScaffold` to `finalize-scaffold-template.mjs`, `segmentKnownWords`?**
-  _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **What connects `scriptPath`, `toolRoot`, `templatesRoot` to the rest of the system?**
   _13 weakly-connected nodes found - possible documentation gaps or missing edges._

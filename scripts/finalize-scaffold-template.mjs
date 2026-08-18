@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, renameSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
@@ -14,6 +14,19 @@ const KNOWN_NAME_WORDS           = new Set([
   'settings', 'signup', 'storage', 'support', 'theme', 'user', 'validation',
   'welcome',
 ]);
+const VALUE_FLAGS = new Map([
+  ['--kind', 'kind'],
+  ['--name', 'name'],
+  ['--project-root', 'projectRoot'],
+  ['--target', 'target'],
+]);
+const BOOLEAN_FLAGS = new Map([
+  ['--overwrite', 'overwrite'],
+  ['--force', 'overwrite'],
+  ['--skip-companions', 'skipCompanions'],
+]);
+const TRUE_WORDS  = new Set(['1', 'on', 'true', 'yes']);
+const FALSE_WORDS = new Set(['0', 'false', 'no', 'off']);
 const scriptPath    = fileURLToPath(import.meta.url);
 const toolRoot      = resolve(dirname(scriptPath), '..');
 const templatesRoot = resolve(toolRoot, 'templates');
@@ -126,13 +139,15 @@ function render(source, sourcePath, replacements, lineEnding) {
   return `${output}${lineEnding}`;
 }
 
-function flagValue(args, flag) {
-  const index = args.indexOf(flag);
-  if (index === -1) return undefined;
+function booleanWord(value) {
+  return value === undefined ? undefined : String(value).trim().toLowerCase();
+}
 
-  const value = args[index + 1];
-  if (!value || value.startsWith('--')) throw new Error(`A value is required for ${flag}.`);
-  return value;
+function booleanValue(flag, value) {
+  const word = booleanWord(value);
+  if (TRUE_WORDS.has(word)) return true;
+  if (FALSE_WORDS.has(word)) return false;
+  throw new Error(`Expected true or false for ${flag}, received: ${value}`);
 }
 
 function parseArguments(args) {
@@ -141,20 +156,61 @@ function parseArguments(args) {
     return { kind, name, projectRoot, target };
   }
 
-  const supportedFlags = new Set(['--kind', '--name', '--project-root', '--target']);
-  for (let index = 0; index < args.length; index += 2) {
-    if (!supportedFlags.has(args[index])) throw new Error(`Unknown argument: ${args[index] ?? ''}`);
+  const options = { overwrite: false, skipCompanions: false };
+
+  for (let index = 0; index < args.length; index += 1) {
+    const argument = args[index];
+    const equals   = argument.startsWith('--') ? argument.indexOf('=') : -1;
+    const flag     = equals === -1 ? argument : argument.slice(0, equals);
+    const inline   = equals === -1 ? undefined : argument.slice(equals + 1);
+    const negation = flag.startsWith('--no-') ? `--${flag.slice(5)}` : '';
+
+    if (VALUE_FLAGS.has(flag)) {
+      const value = inline ?? args[index + 1];
+      if (!value || (inline === undefined && value.startsWith('--'))) {
+        throw new Error(`A value is required for ${flag}.`);
+      }
+      options[VALUE_FLAGS.get(flag)] = value;
+      if (inline === undefined) index += 1;
+      continue;
+    }
+
+    if (BOOLEAN_FLAGS.has(negation)) {
+      options[BOOLEAN_FLAGS.get(negation)] = inline === undefined ? false : !booleanValue(flag, inline);
+      continue;
+    }
+
+    if (BOOLEAN_FLAGS.has(flag)) {
+      // A bare `--overwrite` means yes and an explicit `--overwrite false`
+      // means no, so a caller filling the value in from a form never has to
+      // decide whether to emit the flag at all.
+      const spelled = inline ?? args[index + 1];
+      const word    = booleanWord(spelled);
+      const written = word !== undefined && (TRUE_WORDS.has(word) || FALSE_WORDS.has(word));
+
+      if (inline !== undefined && !written) throw new Error(`Expected true or false for ${flag}, received: ${inline}`);
+      options[BOOLEAN_FLAGS.get(flag)] = written ? booleanValue(flag, spelled) : true;
+      if (inline === undefined && written) index += 1;
+      continue;
+    }
+
+    throw new Error(
+      `Unknown argument: ${argument}\n` +
+      `Supported flags: ${[...VALUE_FLAGS.keys(), ...BOOLEAN_FLAGS.keys()].join(', ')}`,
+    );
   }
 
-  return {
-    kind       : flagValue(args, '--kind'),
-    name       : flagValue(args, '--name'),
-    projectRoot: flagValue(args, '--project-root'),
-    target     : flagValue(args, '--target'),
-  };
+  return options;
 }
 
-export function finalizeScaffold({ kind, name: rawName, projectRoot: projectRootArgument, target: targetArgument }) {
+export function finalizeScaffold({
+  kind,
+  name: rawName,
+  overwrite = false,
+  projectRoot: projectRootArgument,
+  skipCompanions = false,
+  target: targetArgument,
+}) {
   const definition  = SCAFFOLD_DEFINITIONS[kind];
   const projectRoot = resolve(projectRootArgument ?? toolRoot);
 
@@ -177,7 +233,7 @@ export function finalizeScaffold({ kind, name: rawName, projectRoot: projectRoot
   const hasStagedTarget = Boolean(targetArgument);
   const targetExists  = existsSync(targetPath);
   const primaryTemplatePath = resolve(templatesRoot, definition.template);
-  const companionFiles = companions(kind, kebabName).map(([template, path]) => ({
+  const companionFiles = (skipCompanions ? [] : companions(kind, kebabName)).map(([template, path]) => ({
     path        : resolve(projectRoot, path),
     templatePath: resolve(templatesRoot, template),
   }));
@@ -187,10 +243,18 @@ export function finalizeScaffold({ kind, name: rawName, projectRoot: projectRoot
   }
   for (const output of [finalizedPath, ...companionFiles.map((file) => file.path)]) {
     if (!isInside(projectRoot, output)) throw new Error(`Scaffold output escapes the project root: ${output}`);
-    const isStagedOutput = hasStagedTarget && targetExists && output === targetPath;
-    if (existsSync(output) && !isStagedOutput) {
-      throw new Error(`Scaffold output already exists: ${output}`);
-    }
+  }
+
+  // The staged file is the one this run is finalizing, so finding it on disk is
+  // not a collision. Anything else already there belongs to an earlier scaffold.
+  const stagedIsPrimary = hasStagedTarget && targetExists && finalizedPath === targetPath;
+  const primaryExists   = existsSync(finalizedPath) && !stagedIsPrimary;
+
+  if (primaryExists && !overwrite) {
+    throw new Error(
+      `Scaffold output already exists: ${finalizedPath}\n` +
+      'Re-run with --overwrite to replace it, or scaffold under another name.',
+    );
   }
 
   const replacements = {
@@ -202,37 +266,63 @@ export function finalizeScaffold({ kind, name: rawName, projectRoot: projectRoot
   const primarySource     = readFileSync(primarySourcePath, 'utf8');
   const lineEnding        = primarySource.includes('\r\n') ? '\r\n' : '\n';
   const renderedPrimary   = render(primarySource, primarySourcePath, replacements, lineEnding);
+  // A companion that is already there is kept rather than treated as a failure.
+  // Scaffolding a model whose endpoint exists is an ordinary thing to want, and
+  // refusing it loses the file the run was actually asked for.
   const renderedCompanions = companionFiles.map((file) => ({
     ...file,
     content: render(readFileSync(file.templatePath, 'utf8'), file.templatePath, replacements, lineEnding),
+    exists : existsSync(file.path),
   }));
 
   if (targetExists) {
     writeFileSync(targetPath, renderedPrimary, 'utf8');
     if (finalizedPath !== targetPath) {
       mkdirSync(dirname(finalizedPath), { recursive: true });
+      if (primaryExists) rmSync(finalizedPath, { force: true });
       renameSync(targetPath, finalizedPath);
     }
   } else {
     mkdirSync(dirname(finalizedPath), { recursive: true });
-    writeFileSync(finalizedPath, renderedPrimary, { encoding: 'utf8', flag: 'wx' });
+    writeFileSync(finalizedPath, renderedPrimary, { encoding: 'utf8', flag: primaryExists ? 'w' : 'wx' });
   }
+
+  const created  = [];
+  const kept     = [];
+  const replaced = [];
+
   for (const file of renderedCompanions) {
+    if (file.exists && !overwrite) {
+      kept.push(file.path);
+      continue;
+    }
     mkdirSync(dirname(file.path), { recursive: true });
-    writeFileSync(file.path, file.content, { encoding: 'utf8', flag: 'wx' });
+    writeFileSync(file.path, file.content, { encoding: 'utf8', flag: file.exists ? 'w' : 'wx' });
+    (file.exists ? replaced : created).push(file.path);
   }
 
   return {
-    companions: companionFiles.map((file) => file.path),
-    path      : finalizedPath,
+    companions     : companionFiles.map((file) => file.path),
+    created,
+    kept,
+    path           : finalizedPath,
     projectRoot,
+    replaced,
+    replacedPrimary: primaryExists,
   };
 }
 
 function main() {
   const options = parseArguments(process.argv.slice(2));
   const result  = finalizeScaffold(options);
-  process.stdout.write(`Scaffold finalized: ${relative(result.projectRoot, result.path)}\n`);
+  const show    = (path) => relative(result.projectRoot, path);
+  const lines   = [
+    `Scaffold finalized: ${show(result.path)}${result.replacedPrimary ? ' (replaced)' : ''}`,
+    ...result.created.map((path) => `  created:  ${show(path)}`),
+    ...result.replaced.map((path) => `  replaced: ${show(path)}`),
+    ...result.kept.map((path) => `  kept:     ${show(path)} (already existed)`),
+  ];
+  process.stdout.write(`${lines.join('\n')}\n`);
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === scriptPath) main();

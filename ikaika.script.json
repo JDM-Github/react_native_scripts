@@ -23,7 +23,9 @@
                         "required": true,
                         "allowed_regex": "^[a-z]+(-[a-z]+)*$",
                         "description": "The screen name; kebab-case is recommended"
-                    }
+                    },
+                    { "flag": "overwrite", "type": "boolean", "required": false, "description": "Replace the screen and its companion files when they already exist" },
+                    { "flag": "skip-companions", "type": "boolean", "required": false, "description": "Create only the screen, without its controller, constant, and enum" }
                 ],
                 "path": "${root}/src/screens",
                 "template": "templates/screen.template.tsx",
@@ -36,13 +38,15 @@
                 "message-invalid-path": "Invalid path provided for screen creation",
                 "message-invalid-template": "Invalid template provided for screen creation",
                 "command-after-success": [
-                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"screen\" --target \"${screen.path}/${screen.filename}\" --name \"${screen.args.name}\" --project-root \"${root}\""
+                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"screen\" --target \"${screen.path}/${screen.filename}\" --name \"${screen.args.name}\" --project-root \"${root}\" --overwrite \"${screen.args.overwrite}\" --skip-companions \"${screen.args.skip-companions}\""
                 ]
             },
 
             "layout": {
                 "args": [
-                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$", "description": "The layout name; kebab-case is recommended" },
+                    { "flag": "overwrite", "type": "boolean", "required": false, "description": "Replace the layout and its companion files when they already exist" },
+                    { "flag": "skip-companions", "type": "boolean", "required": false, "description": "Create only the layout, without its controller, constant, and enum" }
                 ],
                 "path": "${root}/src/layouts",
                 "template": "templates/layout.template.tsx",
@@ -54,7 +58,7 @@
                 "message-invalid-path": "Invalid layout path",
                 "message-invalid-template": "Invalid layout template",
                 "command-after-success": [
-                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"layout\" --target \"${layout.path}/${layout.filename}\" --name \"${layout.args.name}\" --project-root \"${root}\""
+                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"layout\" --target \"${layout.path}/${layout.filename}\" --name \"${layout.args.name}\" --project-root \"${root}\" --overwrite \"${layout.args.overwrite}\" --skip-companions \"${layout.args.skip-companions}\""
                 ]
             },
 
@@ -78,7 +82,8 @@
 
             "apiEndpoint": {
                 "args": [
-                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$", "description": "The API resource name; kebab-case is recommended" },
+                    { "flag": "overwrite", "type": "boolean", "required": false, "description": "Replace the endpoint when one of the same name already exists" }
                 ],
                 "path": "${root}/src/apis/endpoint",
                 "template": "templates/api-endpoint.template.ts",
@@ -90,13 +95,15 @@
                 "message-invalid-path": "Invalid API endpoint path",
                 "message-invalid-template": "Invalid API endpoint template",
                 "command-after-success": [
-                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"apiEndpoint\" --target \"${apiEndpoint.path}/${apiEndpoint.filename}\" --name \"${apiEndpoint.args.name}\" --project-root \"${root}\""
+                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"apiEndpoint\" --target \"${apiEndpoint.path}/${apiEndpoint.filename}\" --name \"${apiEndpoint.args.name}\" --project-root \"${root}\" --overwrite \"${apiEndpoint.args.overwrite}\""
                 ]
             },
 
             "apiModel": {
                 "args": [
-                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$", "description": "The API resource name; kebab-case is recommended" },
+                    { "flag": "overwrite", "type": "boolean", "required": false, "description": "Replace the model and its GET ping endpoint when they already exist" },
+                    { "flag": "skip-companions", "type": "boolean", "required": false, "description": "Create only the model, without the GET ping endpoint" }
                 ],
                 "path": "${root}/src/apis/models",
                 "template": "templates/api-model.template.ts",
@@ -108,7 +115,7 @@
                 "message-invalid-path": "Invalid API model path",
                 "message-invalid-template": "Invalid API model template",
                 "command-after-success": [
-                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"apiModel\" --target \"${apiModel.path}/${apiModel.filename}\" --name \"${apiModel.args.name}\" --project-root \"${root}\""
+                    "node \"scripts/finalize-scaffold-template.mjs\" --kind \"apiModel\" --target \"${apiModel.path}/${apiModel.filename}\" --name \"${apiModel.args.name}\" --project-root \"${root}\" --overwrite \"${apiModel.args.overwrite}\" --skip-companions \"${apiModel.args.skip-companions}\""
                 ]
             },
 

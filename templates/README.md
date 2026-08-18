@@ -60,3 +60,11 @@ file is created, `command-after-success` runs
 `scripts/finalize-scaffold-template.mjs` to remove the outer wrapper, replace
 the placeholders, normalize the destination, and create any companion files.
 Generated source remains under `src/`, where normal validation applies.
+
+A companion file that is already on disk is kept, not treated as a failure, so
+scaffolding an API model whose GET ping endpoint already exists still produces
+the model. Two flags change that: `--overwrite` (alias `--force`) rewrites files
+that are already there, including the primary one, and `--skip-companions`
+creates only the file that was asked for. Both accept a bare flag, an explicit
+`true`/`false`, or a `--no-` prefix, so a caller filling the value in from a
+form can always pass the flag.
