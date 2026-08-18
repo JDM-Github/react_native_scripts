@@ -1,7 +1,7 @@
 {
   "ikaika.script.json": {
-    "mtime": 1787018668.114054,
-    "ast_hash": "3c162c769723229cd2529e9caafd57ef",
+    "mtime": 1787024597.2529259,
+    "ast_hash": "b7fa699ef0f97830ba44296d18df867c",
     "semantic_hash": ""
   },
   "scripts/finalize-scaffold-template.mjs": {
@@ -130,8 +130,28 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1787018824.0995202,
-    "ast_hash": "159d12cd81c06c01ac2d50db5b9f1375",
+    "mtime": 1787024692.6080983,
+    "ast_hash": "52b34a6ca866c6636cb60251fa5604ce",
+    "semantic_hash": ""
+  },
+  "scripts/build-platform.mjs": {
+    "mtime": 1787024522.3476753,
+    "ast_hash": "b048bbc160ae85889dc98c5253fe0c6c",
+    "semantic_hash": ""
+  },
+  "scripts/electron/main.cjs": {
+    "mtime": 1786677177.79395,
+    "ast_hash": "b0efad9a907fa4171b02b5a8b5fa543f",
+    "semantic_hash": ""
+  },
+  "scripts/electron/package.json": {
+    "mtime": 1787024577.4767003,
+    "ast_hash": "bc10bf0f42415821e94686b3dacabd5c",
+    "semantic_hash": ""
+  },
+  "changes/session-2026-08-16_23-42-30_UTC_to_2026-08-18_02-12-33_UTC.md": {
+    "mtime": 1787019183.1289952,
+    "ast_hash": "baf22f4703f3df638bbaf23de12b7d58",
     "semantic_hash": ""
   }
 }

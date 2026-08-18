@@ -1,0 +1,47 @@
+{
+  "name": "react-native-structure-desktop",
+  "version": "1.0.0",
+  "description": "Windows desktop package for React Native Structure",
+  "author": "REACT NATIVE STRUCTURE",
+  "main": "main.cjs",
+  "private": true,
+  "devDependencies": {
+    "electron": "43.4.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.react.name.desktop",
+    "productName": "React Native Structure",
+    "asar": true,
+    "directories": {
+      "output": "../../.build-temp/windows-installer"
+    },
+    "files": [
+      "main.cjs",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../../.build-temp/windows-web",
+        "to": "web"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}

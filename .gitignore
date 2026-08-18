@@ -1,2 +1,4 @@
-
+.build-temp/
 .changes/
+build/
+node_modules/

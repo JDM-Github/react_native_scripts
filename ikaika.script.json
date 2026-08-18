@@ -1,5 +1,5 @@
 {
-    "version": "0.0.1+1",
+    "version": "0.0.2+1",
     "name": "react-native-script",
     "description": "A React Native Script project",
     "title": "React Native Script",
@@ -11,8 +11,73 @@
         "number": ["min", "max"],
         "boolean": []
     },
+    "after-clone-command": [
+        "npm install --prefix \"scripts/electron\""
+    ],
     "config": {
+        "build": {
 
+            "android": {
+                "path": "${root}/build/android",
+                "message-success": "Release APK and AAB created under build/android",
+                "message-error": "Error building for Android: ${error}",
+                "message-invalid-path": "Invalid Android build output path",
+                "command-after-success": [
+                    "node \"scripts/build-platform.mjs\" --platform \"android\" --project-root \"${root}\""
+                ]
+            },
+
+            "web": {
+                "path": "${root}/build/web",
+                "message-success": "Web bundle exported under build/web",
+                "message-error": "Error building for Web: ${error}",
+                "message-invalid-path": "Invalid Web build output path",
+                "command-after-success": [
+                    "node \"scripts/build-platform.mjs\" --platform \"web\" --project-root \"${root}\""
+                ]
+            },
+
+            "window": {
+                "path": "${root}/build/window",
+                "message-success": "Windows x64 installer created under build/window",
+                "message-error": "Error building for Windows: ${error}",
+                "message-invalid-path": "Invalid Windows build output path",
+                "command-after-success": [
+                    "node \"scripts/build-platform.mjs\" --platform \"window\" --project-root \"${root}\""
+                ]
+            },
+
+            "ios": {
+                "path": "${root}/build/ios",
+                "message-success": "iOS build finished",
+                "message-error": "Error building for iOS: ${error}",
+                "message-invalid-path": "Invalid iOS build output path",
+                "command-after-success": [
+                    "node \"scripts/build-platform.mjs\" --platform \"ios\" --project-root \"${root}\""
+                ]
+            },
+
+            "macos": {
+                "path": "${root}/build/macos",
+                "message-success": "macOS build finished",
+                "message-error": "Error building for macOS: ${error}",
+                "message-invalid-path": "Invalid macOS build output path",
+                "command-after-success": [
+                    "node \"scripts/build-platform.mjs\" --platform \"macos\" --project-root \"${root}\""
+                ]
+            },
+
+            "linux": {
+                "path": "${root}/build/linux",
+                "message-success": "Linux build finished",
+                "message-error": "Error building for Linux: ${error}",
+                "message-invalid-path": "Invalid Linux build output path",
+                "command-after-success": [
+                    "node \"scripts/build-platform.mjs\" --platform \"linux\" --project-root \"${root}\""
+                ]
+            }
+
+        },
         "scaffold": {
 
             "screen": {

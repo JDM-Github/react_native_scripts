@@ -5,8 +5,8 @@
 A scaffold *tool*, not an application. It holds the templates and the finalizer
 that the IKAIKA TUI (`ikaika_tui`, a separate repo) runs to generate React
 Native source files **into some other project**. Nothing here is imported at
-runtime and nothing here is built: there is no `package.json`, no test runner,
-no linter, no type-checker.
+runtime and nothing here is built: no test runner, no linter, no type-checker,
+and the only `package.json` is the Electron shell's.
 
 Every file this repo writes lands under a caller-supplied `--project-root`.
 That root is somebody's real codebase — treat a stray write as data loss.
@@ -16,7 +16,9 @@ That root is somebody's real codebase — treat a stray write as data loss.
 | Path | What it is |
 | --- | --- |
 | `ikaika.script.json` | The manifest the TUI reads: one entry per scaffold kind — form arguments, staging path, template, messages, and the command to run afterwards. |
-| `scripts/finalize-scaffold-template.mjs` | The finalizer: name normalization, path safety, rendering, companions, writes. The only executable code in the repo. |
+| `scripts/finalize-scaffold-template.mjs` | The finalizer behind every `config.scaffold` action: name normalization, path safety, rendering, companions, writes. |
+| `scripts/build-platform.mjs` | The builder behind every `config.build` action. |
+| `scripts/electron/` | The Electron shell the Windows installer wraps around an Expo Web export. Its own npm project. |
 | `templates/` | Source templates, one per generated file shape. `templates/README.md` holds the scaffold catalog and the conventions generated code must follow. |
 | `changes/` | Generated session summaries. Do not hand-edit. |
 | `.serena/memories/` | Agent notes. Keep them honest when a convention moves. |
@@ -27,20 +29,31 @@ That root is somebody's real codebase — treat a stray write as data loss.
 1. The TUI reads the kind's entry from `ikaika.script.json` and renders `args`
    as a form.
 2. It refuses up front if the staging path (`path` + `filename`) already
-   exists. That check belongs to the TUI; no flag in this repo overrides it.
+   exists — unless the action declares a boolean argument named exactly
+   `overwrite` and the form answered yes. That check is the TUI's; the name of
+   the argument is the whole interface to it.
 3. It copies `template` to the staging path verbatim, still wrapped.
-4. It runs each `command-after-success` with `${...}` references expanded, cwd
-   set to **this** repo — which is why `scripts/...` is relative while
+4. It runs each `command-after-success` with `${...}` references expanded and
+   cwd set to **this** repo — which is why `scripts/...` is relative while
    `${root}` is absolute.
-5. `finalize-scaffold-template.mjs` unwraps, renders, moves the staged file to
-   its normalized destination, and writes companions.
+5. For a scaffold that command is the finalizer, which unwraps, renders, moves
+   the staged file to its normalized destination, and writes companions.
 6. On a non-zero exit the TUI deletes the staged file. A late failure therefore
    throws away the file the user asked for, so fail before writing anything or
    do not fail at all.
 
+An action needs a template *or* a command, not both: a `config.build` entry
+declares only a command, so nothing is staged and step 6 cannot bite. Giving
+such an action a `path` with no `filename` is still worth doing — it stages
+nothing but gives the menu card "Runs in <path>" instead of a blank line.
+
 Command tokens are split before references are expanded, so each `${...}`
 arrives as its own argv item — a boolean argument reaches the script as
-`--overwrite` `true`.
+`--overwrite` `true`. There is no shell: `cd x && y` is not a command, it is a
+program called `cd`.
+
+`after-clone-command` at the top of the manifest is **not read by the TUI**
+today. It records the install the Windows build needs; run it by hand.
 
 ## The template convention
 
@@ -85,6 +98,38 @@ re-finalize a finalized file — it has no wrapper left, so `unwrap` fails.
 - Line endings come from the staged file or template, not from the platform.
   Leave them alone.
 
+## Builds
+
+`config.build` has one action per platform, each running:
+
+```
+node scripts/build-platform.mjs --platform <platform> --project-root ${root}
+```
+
+The project root has to be a flag for the same reason the finalizer needs one:
+commands run with cwd set to **this** repo, so the script may not read
+`process.cwd()` for the project, and every subprocess it spawns gets an
+explicit `cwd`.
+
+- Artifacts publish to `<project>/build/<folder>/<version>+<versionCode>`,
+  where `<folder>` is the manifest key — `windows` publishes to `build/window`.
+- Staging is `<project>/.build-temp`, because publishing it is a `renameSync`
+  and a rename across volumes fails.
+- Windows is the exception. `scripts/electron/package.json` names
+  `../../.build-temp/windows-web` and `../../.build-temp/windows-installer`
+  relative to itself, so those two live under **this** repo and the finished
+  installer is copied, not renamed, into the project. Move one of those paths
+  and you have to move the other.
+- `expo` resolves from the project first, so an app is built by its own Expo
+  version; `electron-builder` resolves from `scripts/electron`. Neither is
+  vendored, and `npm install --prefix scripts/electron` is what makes a Windows
+  build possible at all.
+- `ios`, `macos`, and `linux` are declared but exit 1 with "not implemented
+  yet". They are in the manifest so the menu is honest about what exists.
+- Before and after every build the script deletes `<project>/dist` and
+  `<project>/release` — stale Expo export defaults. It is the one place this
+  repo removes something it did not create.
+
 ## Adding a scaffold kind
 
 Touch all of these or it half-works:
@@ -116,6 +161,12 @@ staged target (what the TUI does) and with none at all (renders straight from
 the template). Exercise collisions in both directions — companion already
 present, primary already present — because that is where this script has broken
 before. Then confirm `templates/` is untouched.
+
+A build cannot be smoke-tested without a real Expo project, but its guards
+can: point `--project-root` at a directory with no `package.json`, at an
+unimplemented platform, and at an unknown one, and check each exits 1 with a
+sentence rather than a stack trace. Confirm afterwards that `.build-temp` is
+gone from both roots.
 
 Afterwards run `graphify update .`, and update `templates/README.md` and
 `.serena/memories/` whenever a documented convention actually moved.
