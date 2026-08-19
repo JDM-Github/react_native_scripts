@@ -1,5 +1,5 @@
 {
-    "version": "0.0.4+1",
+    "version": "0.0.5+1",
     "name": "react-native-script",
     "type": "script",
     "description": "A React Native Script project",
@@ -57,6 +57,7 @@
         "npm install --prefix \"scripts/electron\""
     ],
     "config": {
+
         "run": {
             "args": [
                 {
@@ -116,6 +117,7 @@
                 "node \"scripts/run-platform.mjs\" --platform \"${run.args.platform}\" --project-root \"${root}\" --port \"${run.args.port}\" --host \"${run.args.host}\" --dev \"${run.args.dev}\""
             ]
         },
+
         "build": {
             "android": {
                 "path": "${root}/build/android",

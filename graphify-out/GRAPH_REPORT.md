@@ -1,16 +1,16 @@
 # Graph Report - react_native_scripts  (2026-08-19)
 
 ## Corpus Check
-- 35 files · ~17,589 words
+- 36 files · ~18,053 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 225 nodes · 232 edges · 36 communities (35 shown, 1 thin omitted)
+- 231 nodes · 237 edges · 36 communities (35 shown, 1 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 4 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `611b890f`
+- Built from commit: `6c19fe43`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -26,9 +26,9 @@
 - package.json
 - Change Summary -- 2026-08-16 23:42:30 UTC to 2026-08-18 02:12:33 UTC
 - Change Summary -- 2026-08-18 03:49:12 UTC to 2026-08-19 08:26:16 UTC
-- BUILD.md
-- run-platform.mjs
 - Tier 1 — Free and local
+- run-platform.mjs
+- Change Summary -- 2026-08-19 10:47:02 UTC to 2026-08-19 12:29:25 UTC
 - Change Summary -- 2026-08-18 02:13:05 UTC to 2026-08-18 03:48:43 UTC
 
 ## God Nodes (most connected - your core abstractions)
@@ -99,24 +99,24 @@ Nodes (4): Change Summary -- 2026-08-16 23:42:30 UTC to 2026-08-18 02:12:33 UTC,
 Cohesion: 0.40
 Nodes (4): Change Summary -- 2026-08-18 03:49:12 UTC to 2026-08-19 08:26:16 UTC, Key Changes, Overview, Risks / Follow-ups
 
-### Community 31 - "BUILD.md"
-Cohesion: 0.13
-Nodes (14): 13. Obtain a publicly trusted code-signing identity, 14. Scaffold a signed-release workflow into generated projects, 15. Auto-updates, 16. Download page and API, 17. SBOM and build provenance, References, The one fact that governs all of this, Tier 2 — Costs money (+6 more)
+### Community 31 - "Tier 1 — Free and local"
+Cohesion: 0.07
+Nodes (27): 10. Add a self-signed test identity for local verification, 11. Add a hardening regression check, 12. Ignore certificate and secret material, 13. Obtain a publicly trusted code-signing identity, 14. Scaffold a signed-release workflow into generated projects, 15. Auto-updates, 16. Download page and API, 17. SBOM and build provenance (+19 more)
 
 ### Community 32 - "run-platform.mjs"
 Cohesion: 0.10
 Nodes (21): BOOLEAN_FLAGS, booleanValue(), booleanWord(), expoCli(), FALSE_WORDS, HOST_MODES, INTERRUPT_EXIT_CODES, packageConfigPath (+13 more)
 
-### Community 33 - "Tier 1 — Free and local"
-Cohesion: 0.15
-Nodes (13): 10. Add a self-signed test identity for local verification, 11. Add a hardening regression check, 12. Ignore certificate and secret material, 1. Replace the prefix-based navigation guard, 2. Restrict external URL opening, 3. Serve a Content Security Policy, 4. Make the security-relevant `webPreferences` explicit, 5. Replace the loopback HTTP server with a custom protocol (+5 more)
+### Community 33 - "Change Summary -- 2026-08-19 10:47:02 UTC to 2026-08-19 12:29:25 UTC"
+Cohesion: 0.33
+Nodes (5): Change Summary -- 2026-08-19 10:47:02 UTC to 2026-08-19 12:29:25 UTC, Change Summary -- 2026-08-19 10:47:02 UTC to 2026-08-19 12:29:25 UTC, Key Changes, Overview, Risks / Follow-ups
 
 ### Community 34 - "Change Summary -- 2026-08-18 02:13:05 UTC to 2026-08-18 03:48:43 UTC"
 Cohesion: 0.40
 Nodes (4): Change Summary -- 2026-08-18 02:13:05 UTC to 2026-08-18 03:48:43 UTC, Key Changes, Overview, Risks / Follow-ups
 
 ## Knowledge Gaps
-- **116 isolated node(s):** `PLATFORM_ALIASES`, `UNIMPLEMENTED`, `VALUE_FLAGS`, `BOOLEAN_FLAGS`, `TRUE_WORDS` (+111 more)
+- **120 isolated node(s):** `PLATFORM_ALIASES`, `UNIMPLEMENTED`, `VALUE_FLAGS`, `BOOLEAN_FLAGS`, `TRUE_WORDS` (+115 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -124,11 +124,9 @@ Nodes (4): Change Summary -- 2026-08-18 02:13:05 UTC to 2026-08-18 03:48:43 UTC,
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `build` connect `build` to `package.json`?**
-  _High betweenness centrality (0.013) - this node is a cross-community bridge._
-- **Why does `Tier 1 — Free and local` connect `Tier 1 — Free and local` to `BUILD.md`?**
-  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+  _High betweenness centrality (0.012) - this node is a cross-community bridge._
 - **What connects `PLATFORM_ALIASES`, `UNIMPLEMENTED`, `VALUE_FLAGS` to the rest of the system?**
-  _116 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _120 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `finalize-scaffold-template.mjs` be split into smaller, more focused modules?**
   _Cohesion score 0.1471861471861472 - nodes in this community are weakly interconnected._
 - **Should `build-platform.mjs` be split into smaller, more focused modules?**
@@ -137,3 +135,5 @@ _Questions this graph is uniquely positioned to answer:_
   _Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected._
 - **Should `main.cjs` be split into smaller, more focused modules?**
   _Cohesion score 0.12318840579710146 - nodes in this community are weakly interconnected._
+- **Should `Tier 1 — Free and local` be split into smaller, more focused modules?**
+  _Cohesion score 0.07142857142857142 - nodes in this community are weakly interconnected._

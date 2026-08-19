@@ -1,7 +1,7 @@
 {
   "ikaika.script.json": {
-    "mtime": 1787138533.9711947,
-    "ast_hash": "42abcdb0f3d54162f94c6b7a8a0eccb0",
+    "mtime": 1787143745.5095036,
+    "ast_hash": "c05a53343eb57471460d6d191811fe84",
     "semantic_hash": ""
   },
   "scripts/finalize-scaffold-template.mjs": {
@@ -177,6 +177,11 @@
   "scripts/get-auto-free-port.mjs": {
     "mtime": 1787138521.6910813,
     "ast_hash": "818b1ba7ea28b3c525c108002e75c096",
+    "semantic_hash": ""
+  },
+  "changes/session-2026-08-19_10-47-02_UTC_to_2026-08-19_12-29-25_UTC.md": {
+    "mtime": 1787142623.5254176,
+    "ast_hash": "a3c81ea180561180d83d61a5ce60ff24",
     "semantic_hash": ""
   }
 }

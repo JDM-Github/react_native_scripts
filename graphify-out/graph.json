@@ -1902,7 +1902,7 @@
       "_origin": "ast",
       "id": "build",
       "community": 31,
-      "community_name": "BUILD.md",
+      "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "build.md"
     },
     {
@@ -1913,7 +1913,7 @@
       "_origin": "ast",
       "id": "build_windows_build_hardening_roadmap",
       "community": 31,
-      "community_name": "BUILD.md",
+      "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "windows build hardening roadmap"
     },
     {
@@ -1924,7 +1924,7 @@
       "_origin": "ast",
       "id": "build_the_one_fact_that_governs_all_of_this",
       "community": 31,
-      "community_name": "BUILD.md",
+      "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "the one fact that governs all of this"
     },
     {
@@ -1935,7 +1935,7 @@
       "_origin": "ast",
       "id": "build_what_this_repo_currently_does",
       "community": 31,
-      "community_name": "BUILD.md",
+      "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "what this repo currently does"
     },
     {
@@ -1946,7 +1946,7 @@
       "_origin": "ast",
       "id": "build_two_products_two_threat_models",
       "community": 31,
-      "community_name": "BUILD.md",
+      "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "two products, two threat models"
     },
     {
@@ -1956,7 +1956,7 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "build_tier_1_free_and_local",
-      "community": 33,
+      "community": 31,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "tier 1 \u2014 free and local"
     },
@@ -1967,7 +1967,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "build_1_replace_the_prefix_based_navigation_guard",
-      "community": 33,
+      "community": 31,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "1. replace the prefix-based navigation guard"
     },
@@ -1978,7 +1978,7 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "build_2_restrict_external_url_opening",
-      "community": 33,
+      "community": 31,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "2. restrict external url opening"
     },
@@ -1989,7 +1989,7 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "build_3_serve_a_content_security_policy",
-      "community": 33,
+      "community": 31,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "3. serve a content security policy"
     },
@@ -2000,7 +2000,7 @@
       "source_location": "L130",
       "_origin": "ast",
       "id": "build_4_make_the_security_relevant_webpreferences_explicit",
-      "community": 33,
+      "community": 31,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "4. make the security-relevant `webpreferences` explicit"
     },
@@ -2011,7 +2011,7 @@
       "source_location": "L145",
       "_origin": "ast",
       "id": "build_5_replace_the_loopback_http_server_with_a_custom_protocol",
-      "community": 33,
+      "community": 31,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "5. replace the loopback http server with a custom protocol"
     },
@@ -2022,7 +2022,7 @@
       "source_location": "L180",
       "_origin": "ast",
       "id": "build_6_derive_app_identity_and_version_from_the_target_project",
-      "community": 33,
+      "community": 31,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "6. derive app identity and version from the target project"
     },
@@ -2033,7 +2033,7 @@
       "source_location": "L209",
       "_origin": "ast",
       "id": "build_7_configure_electron_fuses",
-      "community": 33,
+      "community": 31,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "7. configure electron fuses"
     },
@@ -2044,7 +2044,7 @@
       "source_location": "L233",
       "_origin": "ast",
       "id": "build_8_emit_checksums_and_a_release_manifest",
-      "community": 33,
+      "community": 31,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "8. emit checksums and a release manifest"
     },
@@ -2055,7 +2055,7 @@
       "source_location": "L251",
       "_origin": "ast",
       "id": "build_9_verify_signatures_as_a_build_gate",
-      "community": 33,
+      "community": 31,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "9. verify signatures as a build gate"
     },
@@ -2066,7 +2066,7 @@
       "source_location": "L273",
       "_origin": "ast",
       "id": "build_10_add_a_self_signed_test_identity_for_local_verification",
-      "community": 33,
+      "community": 31,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "10. add a self-signed test identity for local verification"
     },
@@ -2077,7 +2077,7 @@
       "source_location": "L293",
       "_origin": "ast",
       "id": "build_11_add_a_hardening_regression_check",
-      "community": 33,
+      "community": 31,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "11. add a hardening regression check"
     },
@@ -2088,7 +2088,7 @@
       "source_location": "L311",
       "_origin": "ast",
       "id": "build_12_ignore_certificate_and_secret_material",
-      "community": 33,
+      "community": 31,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "12. ignore certificate and secret material"
     },
@@ -2100,7 +2100,7 @@
       "_origin": "ast",
       "id": "build_tier_2_costs_money",
       "community": 31,
-      "community_name": "BUILD.md",
+      "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "tier 2 \u2014 costs money"
     },
     {
@@ -2111,7 +2111,7 @@
       "_origin": "ast",
       "id": "build_13_obtain_a_publicly_trusted_code_signing_identity",
       "community": 31,
-      "community_name": "BUILD.md",
+      "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "13. obtain a publicly trusted code-signing identity"
     },
     {
@@ -2122,7 +2122,7 @@
       "_origin": "ast",
       "id": "build_tier_3_needs_infrastructure_and_mostly_belongs_elsewhere",
       "community": 31,
-      "community_name": "BUILD.md",
+      "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "tier 3 \u2014 needs infrastructure, and mostly belongs elsewhere"
     },
     {
@@ -2133,7 +2133,7 @@
       "_origin": "ast",
       "id": "build_14_scaffold_a_signed_release_workflow_into_generated_projects",
       "community": 31,
-      "community_name": "BUILD.md",
+      "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "14. scaffold a signed-release workflow into generated projects"
     },
     {
@@ -2144,7 +2144,7 @@
       "_origin": "ast",
       "id": "build_15_auto_updates",
       "community": 31,
-      "community_name": "BUILD.md",
+      "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "15. auto-updates"
     },
     {
@@ -2155,7 +2155,7 @@
       "_origin": "ast",
       "id": "build_16_download_page_and_api",
       "community": 31,
-      "community_name": "BUILD.md",
+      "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "16. download page and api"
     },
     {
@@ -2166,7 +2166,7 @@
       "_origin": "ast",
       "id": "build_17_sbom_and_build_provenance",
       "community": 31,
-      "community_name": "BUILD.md",
+      "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "17. sbom and build provenance"
     },
     {
@@ -2177,7 +2177,7 @@
       "_origin": "ast",
       "id": "build_tier_4_not_possible_do_not_attempt",
       "community": 31,
-      "community_name": "BUILD.md",
+      "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "tier 4 \u2014 not possible, do not attempt"
     },
     {
@@ -2188,7 +2188,7 @@
       "_origin": "ast",
       "id": "build_working_agreements",
       "community": 31,
-      "community_name": "BUILD.md",
+      "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "working agreements"
     },
     {
@@ -2199,7 +2199,7 @@
       "_origin": "ast",
       "id": "build_references",
       "community": 31,
-      "community_name": "BUILD.md",
+      "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "references"
     },
     {
@@ -2486,6 +2486,72 @@
       "id": "changes_session_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc_risks_follow_ups",
       "community": 30,
       "community_name": "Change Summary -- 2026-08-18 03:49:12 UTC to 2026-08-19 08:26:16 UTC",
+      "norm_label": "risks / follow-ups"
+    },
+    {
+      "label": "session-2026-08-19_10-47-02_UTC_to_2026-08-19_12-29-25_UTC.md",
+      "file_type": "document",
+      "source_file": "changes/session-2026-08-19_10-47-02_UTC_to_2026-08-19_12-29-25_UTC.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "changes_session_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc",
+      "community": 33,
+      "community_name": "Change Summary -- 2026-08-19 10:47:02 UTC to 2026-08-19 12:29:25 UTC",
+      "norm_label": "session-2026-08-19_10-47-02_utc_to_2026-08-19_12-29-25_utc.md"
+    },
+    {
+      "label": "Change Summary -- 2026-08-19 10:47:02 UTC to 2026-08-19 12:29:25 UTC",
+      "file_type": "document",
+      "source_file": "changes/session-2026-08-19_10-47-02_UTC_to_2026-08-19_12-29-25_UTC.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "changes_session_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_change_summary_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc",
+      "community": 33,
+      "community_name": "Change Summary -- 2026-08-19 10:47:02 UTC to 2026-08-19 12:29:25 UTC",
+      "norm_label": "change summary -- 2026-08-19 10:47:02 utc to 2026-08-19 12:29:25 utc"
+    },
+    {
+      "label": "Change Summary -- 2026-08-19 10:47:02 UTC to 2026-08-19 12:29:25 UTC",
+      "file_type": "document",
+      "source_file": "changes/session-2026-08-19_10-47-02_UTC_to_2026-08-19_12-29-25_UTC.md",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "changes_session_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_change_summary_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_8",
+      "community": 33,
+      "community_name": "Change Summary -- 2026-08-19 10:47:02 UTC to 2026-08-19 12:29:25 UTC",
+      "norm_label": "change summary -- 2026-08-19 10:47:02 utc to 2026-08-19 12:29:25 utc"
+    },
+    {
+      "label": "Overview",
+      "file_type": "document",
+      "source_file": "changes/session-2026-08-19_10-47-02_UTC_to_2026-08-19_12-29-25_UTC.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "changes_session_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_overview",
+      "community": 33,
+      "community_name": "Change Summary -- 2026-08-19 10:47:02 UTC to 2026-08-19 12:29:25 UTC",
+      "norm_label": "overview"
+    },
+    {
+      "label": "Key Changes",
+      "file_type": "document",
+      "source_file": "changes/session-2026-08-19_10-47-02_UTC_to_2026-08-19_12-29-25_UTC.md",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "changes_session_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_key_changes",
+      "community": 33,
+      "community_name": "Change Summary -- 2026-08-19 10:47:02 UTC to 2026-08-19 12:29:25 UTC",
+      "norm_label": "key changes"
+    },
+    {
+      "label": "Risks / Follow-ups",
+      "file_type": "document",
+      "source_file": "changes/session-2026-08-19_10-47-02_UTC_to_2026-08-19_12-29-25_UTC.md",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "changes_session_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_risks_follow_ups",
+      "community": 33,
+      "community_name": "Change Summary -- 2026-08-19 10:47:02 UTC to 2026-08-19 12:29:25 UTC",
       "norm_label": "risks / follow-ups"
     },
     {
@@ -5107,6 +5173,61 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "changes/session-2026-08-19_10-47-02_UTC_to_2026-08-19_12-29-25_UTC.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "changes_session_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc",
+      "target": "changes_session_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_change_summary_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "changes/session-2026-08-19_10-47-02_UTC_to_2026-08-19_12-29-25_UTC.md",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "changes_session_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc",
+      "target": "changes_session_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_change_summary_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_8",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "changes/session-2026-08-19_10-47-02_UTC_to_2026-08-19_12-29-25_UTC.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "changes_session_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_change_summary_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_8",
+      "target": "changes_session_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_key_changes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "changes/session-2026-08-19_10-47-02_UTC_to_2026-08-19_12-29-25_UTC.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "changes_session_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_change_summary_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_8",
+      "target": "changes_session_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_overview",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "changes/session-2026-08-19_10-47-02_UTC_to_2026-08-19_12-29-25_UTC.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "changes_session_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_change_summary_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_8",
+      "target": "changes_session_2026_08_19_10_47_02_utc_to_2026_08_19_12_29_25_utc_risks_follow_ups",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "conceptually_related_to",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
@@ -5126,5 +5247,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "611b890fc65dcae3b270da05906e02161b1a0e3a"
+  "built_at_commit": "6c19fe430fe532887dd0942ee264ee1fd6210ddb"
 }
