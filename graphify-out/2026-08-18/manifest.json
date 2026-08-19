@@ -1,7 +1,7 @@
 {
   "ikaika.script.json": {
-    "mtime": 1787024597.2529259,
-    "ast_hash": "b7fa699ef0f97830ba44296d18df867c",
+    "mtime": 1787024866.1232321,
+    "ast_hash": "25c7663b14e5740f7cf9f852791e6a65",
     "semantic_hash": ""
   },
   "scripts/finalize-scaffold-template.mjs": {
@@ -130,8 +130,8 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1787024681.6298938,
-    "ast_hash": "fa3461f0e0aba87cb4a0e805dff68b6b",
+    "mtime": 1787024692.6080983,
+    "ast_hash": "52b34a6ca866c6636cb60251fa5604ce",
     "semantic_hash": ""
   },
   "scripts/build-platform.mjs": {
@@ -152,6 +152,16 @@
   "changes/session-2026-08-16_23-42-30_UTC_to_2026-08-18_02-12-33_UTC.md": {
     "mtime": 1787019183.1289952,
     "ast_hash": "baf22f4703f3df638bbaf23de12b7d58",
+    "semantic_hash": ""
+  },
+  "BUILD.md": {
+    "mtime": 1787051630.114881,
+    "ast_hash": "bb4bbc217f5a1a51ae7ca2f84fb57511",
+    "semantic_hash": ""
+  },
+  "changes/session-2026-08-18_02-13-05_UTC_to_2026-08-18_03-48-43_UTC.md": {
+    "mtime": 1787024950.184713,
+    "ast_hash": "49afe8993e0eec75047310d4f1ab8aea",
     "semantic_hash": ""
   }
 }

@@ -28,5 +28,10 @@
   "26": "main.cjs",
   "27": "CLAUDE.md",
   "28": "package.json",
-  "29": "Change Summary -- 2026-08-16 23:42:30 UTC to 2026-08-18 02:12:33 UTC"
+  "29": "Change Summary -- 2026-08-16 23:42:30 UTC to 2026-08-18 02:12:33 UTC",
+  "30": "Electron Secure Build and Official Release Implementation Guide",
+  "31": "Priority 0: Configure Electron Securely",
+  "32": "Definition of Done",
+  "33": "Priority 1: Checksums, Manifest, Provenance, and SBOM",
+  "34": "Change Summary -- 2026-08-18 02:13:05 UTC to 2026-08-18 03:48:43 UTC"
 }

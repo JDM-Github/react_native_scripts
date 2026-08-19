@@ -1,7 +1,7 @@
 # Graph Report - react_native_scripts  (2026-08-19)
 
 ## Corpus Check
-- 33 files · ~18,731 words
+- 33 files · ~18,595 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary

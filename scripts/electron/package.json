@@ -24,6 +24,10 @@
       {
         "from": "../../.build-temp/windows-web",
         "to": "web"
+      },
+      {
+        "from": "../../.build-temp/windows-desktop",
+        "to": "desktop"
       }
     ],
     "win": {

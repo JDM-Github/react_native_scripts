@@ -1,12 +1,24 @@
 {
     "version": "0.0.2+1",
     "name": "react-native-script",
+    "type": "script",
     "description": "A React Native Script project",
     "title": "React Native Script",
     "rules": {
-        "global": ["flag", "type", "required", "description"],
+        "global": ["flag", "type", "required", "description", "default", "hide", "name"],
         "string": ["allowed_regex"],
-        "array": ["allowed_values"],
+        "array": [
+            "allowed_values",
+            {
+                "array_type": [
+                    "select",
+                    {
+                        "checkbox": ["max_selected"]
+                    },
+                    "radio"
+                ]
+            }
+        ],
         "object": ["required_keys"],
         "number": ["min", "max"],
         "boolean": []
@@ -15,6 +27,54 @@
         "npm install --prefix \"scripts/electron\""
     ],
     "config": {
+
+        "run": {
+            "args": [
+                {
+                    "name": "Platform",
+                    "flag": "platform",
+                    "type": "array",
+                    "array_type": "radio",
+                    "required": true,
+                    "allowed_values": ["android", "ios", "web", "window", "macos", "linux"],
+                    "description": "The platform to run the project on"
+                },
+                {
+                    "name": "Port",
+                    "flag": "port",
+                    "type": "number",
+                    "required": false,
+                    "min": 1024,
+                    "max": 65535,
+                    "default": 8080,
+                    "description": "The port to run the project on"
+                },
+                {
+                    "name": "Host mode",
+                    "flag": "host",
+                    "type": "string",
+                    "required": false,
+                    "allowed_regex": "^(lan|localhost|tunnel)$",
+                    "default": "localhost",
+                    "description": "Dev server connection mode: lan, localhost, or tunnel (web only)"
+                },
+                {
+                    "name": "Development mode",
+                    "flag": "dev",
+                    "type": "boolean",
+                    "required": false,
+                    "default": true,
+                    "description": "Whether to run the project in development mode"
+                }
+            ],
+            "message-success": "Project is running on ${run.args.platform}",
+            "message-error": "Error running project on ${run.args.platform}: ${error}",
+            "message-invalid-args": "Invalid platform specified. Allowed values are: android, ios, web, window, macos, linux",
+            "command-after-success": [
+                "node \"scripts/run-platform.mjs\" --platform \"${run.args.platform}\" --project-root \"${root}\" --port \"${run.args.port}\" --host \"${run.args.host}\" --dev \"${run.args.dev}\""
+            ]
+        },
+
         "build": {
 
             "android": {
@@ -38,12 +98,75 @@
             },
 
             "window": {
+                "args": [
+                    {
+                        "name": "Tray application",
+                        "flag": "bin",
+                        "type": "boolean",
+                        "required": false,
+                        "default": false,
+                        "description": "Keep the app running in the notification area when its window is closed"
+                    },
+                    {
+                        "name": "Tray icon",
+                        "flag": "bin-icon",
+                        "type": "string",
+                        "required": false,
+                        "hide": "bin",
+                        "allowed_regex": "^[A-Za-z0-9._/-]+\\.(png|ico|jpg|jpeg)$",
+                        "description": "Path to the tray icon inside the project, such as assets/tray.png; required when the tray is on"
+                    },
+                    {
+                        "name": "Tray tooltip",
+                        "flag": "bin-tooltip",
+                        "type": "string",
+                        "required": false,
+                        "hide": "bin",
+                        "description": "Text shown when hovering the tray icon; defaults to the app name"
+                    },
+                    {
+                        "name": "Tray menu",
+                        "flag": "bin-menu",
+                        "type": "string",
+                        "required": false,
+                        "hide": "bin",
+                        "description": "Right-click menu as Label:action items joined by | — actions are show, hide, toggle, reload, open-url, quit; use - for a separator"
+                    },
+                    {
+                        "name": "Close to tray",
+                        "flag": "bin-close-to-tray",
+                        "type": "boolean",
+                        "required": false,
+                        "default": true,
+                        "hide": "bin",
+                        "description": "Closing the window hides it to the tray instead of quitting"
+                    },
+                    {
+                        "name": "Start minimized",
+                        "flag": "bin-start-minimized",
+                        "type": "boolean",
+                        "required": false,
+                        "default": false,
+                        "hide": "bin",
+                        "description": "Start with the window hidden, showing only the tray icon"
+                    },
+                    {
+                        "name": "Single instance",
+                        "flag": "bin-single-instance",
+                        "type": "boolean",
+                        "required": false,
+                        "default": true,
+                        "hide": "bin",
+                        "description": "A second launch focuses the running copy instead of adding another tray icon"
+                    }
+                ],
                 "path": "${root}/build/window",
                 "message-success": "Windows x64 installer created under build/window",
                 "message-error": "Error building for Windows: ${error}",
+                "message-invalid-args": "A tray build needs a tray icon inside the project (.png or .ico), and each menu item must read Label:action",
                 "message-invalid-path": "Invalid Windows build output path",
                 "command-after-success": [
-                    "node \"scripts/build-platform.mjs\" --platform \"window\" --project-root \"${root}\""
+                    "node \"scripts/build-platform.mjs\" --platform \"window\" --project-root \"${root}\" --bin \"${window.args.bin}\" --bin-icon \"${window.args.bin-icon}\" --bin-tooltip \"${window.args.bin-tooltip}\" --bin-menu \"${window.args.bin-menu}\" --bin-close-to-tray \"${window.args.bin-close-to-tray}\" --bin-start-minimized \"${window.args.bin-start-minimized}\" --bin-single-instance \"${window.args.bin-single-instance}\""
                 ]
             },
 
@@ -78,19 +201,21 @@
             }
 
         },
+
         "scaffold": {
 
             "screen": {
                 "args": [
                     {
+                        "name": "Screen name",
                         "flag": "name",
                         "type": "string",
                         "required": true,
                         "allowed_regex": "^[a-z]+(-[a-z]+)*$",
                         "description": "The screen name; kebab-case is recommended"
                     },
-                    { "flag": "overwrite", "type": "boolean", "required": false, "description": "Replace the screen and its companion files when they already exist" },
-                    { "flag": "skip-companions", "type": "boolean", "required": false, "description": "Create only the screen, without its controller, constant, and enum" }
+                    { "name": "Overwrite", "flag": "overwrite", "type": "boolean", "required": false, "description": "Replace the screen and its companion files when they already exist" },
+                    { "name": "Skip companions", "flag": "skip-companions", "type": "boolean", "required": false, "description": "Create only the screen, without its controller, constant, and enum" }
                 ],
                 "path": "${root}/src/screens",
                 "template": "templates/screen.template.tsx",
@@ -109,9 +234,9 @@
 
             "layout": {
                 "args": [
-                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$", "description": "The layout name; kebab-case is recommended" },
-                    { "flag": "overwrite", "type": "boolean", "required": false, "description": "Replace the layout and its companion files when they already exist" },
-                    { "flag": "skip-companions", "type": "boolean", "required": false, "description": "Create only the layout, without its controller, constant, and enum" }
+                    { "name": "Layout name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$", "description": "The layout name; kebab-case is recommended" },
+                    { "name": "Overwrite", "flag": "overwrite", "type": "boolean", "required": false, "description": "Replace the layout and its companion files when they already exist" },
+                    { "name": "Skip companions", "flag": "skip-companions", "type": "boolean", "required": false, "description": "Create only the layout, without its controller, constant, and enum" }
                 ],
                 "path": "${root}/src/layouts",
                 "template": "templates/layout.template.tsx",
@@ -129,7 +254,7 @@
 
             "widget": {
                 "args": [
-                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    { "name": "Widget name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/components/widgets",
                 "template": "templates/widget.template.tsx",
@@ -147,8 +272,8 @@
 
             "apiEndpoint": {
                 "args": [
-                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$", "description": "The API resource name; kebab-case is recommended" },
-                    { "flag": "overwrite", "type": "boolean", "required": false, "description": "Replace the endpoint when one of the same name already exists" }
+                    { "name": "Endpoint name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$", "description": "The API resource name; kebab-case is recommended" },
+                    { "name": "Overwrite", "flag": "overwrite", "type": "boolean", "required": false, "description": "Replace the endpoint when one of the same name already exists" }
                 ],
                 "path": "${root}/src/apis/endpoint",
                 "template": "templates/api-endpoint.template.ts",
@@ -166,9 +291,9 @@
 
             "apiModel": {
                 "args": [
-                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$", "description": "The API resource name; kebab-case is recommended" },
-                    { "flag": "overwrite", "type": "boolean", "required": false, "description": "Replace the model and its GET ping endpoint when they already exist" },
-                    { "flag": "skip-companions", "type": "boolean", "required": false, "description": "Create only the model, without the GET ping endpoint" }
+                    { "name": "Model name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$", "description": "The API resource name; kebab-case is recommended" },
+                    { "name": "Overwrite", "flag": "overwrite", "type": "boolean", "required": false, "description": "Replace the model and its GET ping endpoint when they already exist" },
+                    { "name": "Skip companions", "flag": "skip-companions", "type": "boolean", "required": false, "description": "Create only the model, without the GET ping endpoint" }
                 ],
                 "path": "${root}/src/apis/models",
                 "template": "templates/api-model.template.ts",
@@ -186,7 +311,7 @@
 
             "service": {
                 "args": [
-                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    { "name": "Service name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/core/services",
                 "template": "templates/service.template.ts",
@@ -204,7 +329,7 @@
 
             "storage": {
                 "args": [
-                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    { "name": "Storage name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/core/storages",
                 "template": "templates/storage.template.ts",
@@ -222,7 +347,7 @@
 
             "utility": {
                 "args": [
-                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    { "name": "Utility name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/core/utilities",
                 "template": "templates/utility.template.ts",
@@ -240,7 +365,7 @@
 
             "state": {
                 "args": [
-                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    { "name": "State name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/core/states",
                 "template": "templates/state.template.ts",
@@ -258,7 +383,7 @@
 
             "manager": {
                 "args": [
-                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    { "name": "Manager name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/core/managers",
                 "template": "templates/manager.template.ts",
@@ -276,7 +401,7 @@
 
             "constant": {
                 "args": [
-                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    { "name": "Constant name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/core/constants",
                 "template": "templates/constant.template.ts",
@@ -294,7 +419,7 @@
 
             "enum": {
                 "args": [
-                    { "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    { "name": "Enum name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
                 ],
                 "path": "${root}/src/core/enums",
                 "template": "templates/enum.template.ts",

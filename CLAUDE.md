@@ -43,14 +43,24 @@ That root is somebody's real codebase — treat a stray write as data loss.
    do not fail at all.
 
 An action needs a template *or* a command, not both: a `config.build` entry
-declares only a command, so nothing is staged and step 6 cannot bite. Giving
-such an action a `path` with no `filename` is still worth doing — it stages
-nothing but gives the menu card "Runs in <path>" instead of a blank line.
+declares no template, so nothing is staged and step 6 cannot bite. It may still
+declare `args` — `build.window` does, for its tray options. Giving such an action
+a `path` with no `filename` is still worth doing — it stages nothing but gives
+the menu card "Runs in <path>" instead of a blank line.
 
 Command tokens are split before references are expanded, so each `${...}`
 arrives as its own argv item — a boolean argument reaches the script as
 `--overwrite` `true`. There is no shell: `cd x && y` is not a command, it is a
 program called `cd`.
+
+**A blank form field arrives as an empty string, not as an absent flag.** Every
+declared argument is expanded, so an unanswered optional field reaches the script
+as `--bin-tooltip` `""`. Both platform scripts treat that as "not supplied" and
+fall back to the declared default, for value flags *and* booleans — a blank
+`--bin` must not read as yes. `finalize-scaffold-template.mjs` does **not** have
+that guard: a blank `--overwrite` still parses as true, because a bare flag means
+yes and the empty word is not recognized as either. Worth fixing before a form
+ever leaves `overwrite` unanswered.
 
 `after-clone-command` at the top of the manifest is **not read by the TUI**
 today. It records the install the Windows build needs; run it by hand.
@@ -116,10 +126,10 @@ explicit `cwd`.
 - Staging is `<project>/.build-temp`, because publishing it is a `renameSync`
   and a rename across volumes fails.
 - Windows is the exception. `scripts/electron/package.json` names
-  `../../.build-temp/windows-web` and `../../.build-temp/windows-installer`
-  relative to itself, so those two live under **this** repo and the finished
-  installer is copied, not renamed, into the project. Move one of those paths
-  and you have to move the other.
+  `../../.build-temp/windows-web`, `../../.build-temp/windows-installer`, and
+  `../../.build-temp/windows-desktop` relative to itself, so those three live
+  under **this** repo and the finished installer is copied, not renamed, into
+  the project. Move one of those paths and you have to move the others.
 - `expo` resolves from the project first, so an app is built by its own Expo
   version; `electron-builder` resolves from `scripts/electron`. Neither is
   vendored, and `npm install --prefix scripts/electron` is what makes a Windows
@@ -129,6 +139,36 @@ explicit `cwd`.
 - Before and after every build the script deletes `<project>/dist` and
   `<project>/release` — stale Expo export defaults. It is the one place this
   repo removes something it did not create.
+
+### The Windows tray build (`--bin`)
+
+`--bin` packages the shell as a tray application: closing the window hides it to
+the notification area instead of quitting. It is Windows-only, and every other
+`--bin-*` flag is inert without it.
+
+- The settings do **not** live in `main.cjs`, which is generic and shared by
+  every project. `build-platform.mjs` writes `.build-temp/windows-desktop/`
+  containing `desktop.json` plus a copy of the icon, and `extraResources` copies
+  that directory to `resources/desktop` in the installed app. `main.cjs` reads it
+  at startup and falls back to plain windowed behaviour whenever it is missing or
+  unreadable — which is what keeps a hand-run `electron-builder` working.
+- That directory is written for **every** Windows build, tray or not, because
+  `extraResources` names it and electron-builder aborts on a missing source. With
+  `--bin` off it holds `{"tray":{"enabled":false}}`.
+- `--bin` requires `--bin-icon`, validated before anything is written: inside the
+  project, an existing file, and one of `.png .ico .jpg .jpeg`. A tray app whose
+  icon fails to load has no clickable notification-area entry, so this fails the
+  build rather than shipping something unreachable.
+- `--bin-menu` is `Label:action` items joined by `|`, `-` for a separator, and
+  `Label:open-url:https://…` for a link. Split from the left so an https URL
+  keeps its colon. Actions are validated at build time against the same
+  allowlist `main.cjs` enforces at runtime — keep the two `TRAY_ACTIONS` sets in
+  step. `open-url` is https-only in both places.
+- `main.cjs` always appends a Quit item if the configured menu lacks one, and
+  refuses to intercept `close` unless a tray actually exists. Both guards exist
+  so a misconfigured tray cannot strand the app with no way to reopen or exit it.
+- A tray build takes the single-instance lock by default, because a second launch
+  would otherwise add a second icon to the notification area.
 
 ## Adding a scaffold kind
 
@@ -146,6 +186,21 @@ Manifest gotchas: the TUI shows the **first argument carrying a `description`**
 as the menu card's detail line, so keep `name` described whenever you add
 arguments beneath it. The top-level `rules` block whitelists which keys each
 argument type may use, and a key missing from it is dropped in silence.
+
+Two `rules.global` keys are about presentation rather than validation, and every
+argument in the manifest now carries the first one:
+
+- **`name`** is the human label the form shows for the argument. `flag` stays the
+  machine name used by `${...}` references and the CLI flag.
+- **`hide`** controls conditional visibility: `true` always hides, `false` always
+  shows, and a **string names another argument that reveals this one** — the tray
+  options all carry `"hide": "bin"`, so they appear only once the tray checkbox
+  is ticked. Note the inversion: the value names the argument that *shows* the
+  field, not a condition under which it hides. `hide` is presentation only —
+  a hidden argument is still expanded into the command, blank.
+
+The format itself is documented in `IKAIKA.SCRIPT.md`, which now lives with the
+TUI rather than in this repo.
 
 ## Verifying a change
 
