@@ -1,7 +1,7 @@
 {
   "ikaika.script.json": {
-    "mtime": 1787127074.1731253,
-    "ast_hash": "abcc55cce4767c9a4aeca86352f06d4d",
+    "mtime": 1787138154.4784408,
+    "ast_hash": "a1ad8c257ff6c4e6cd2af81ba72ff1e4",
     "semantic_hash": ""
   },
   "scripts/finalize-scaffold-template.mjs": {
@@ -130,8 +130,8 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1787127269.610451,
-    "ast_hash": "c205332aa9316ec5005d6ec0ceba8086",
+    "mtime": 1787136526.9153054,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": ""
   },
   "scripts/build-platform.mjs": {
@@ -167,6 +167,11 @@
   "scripts/run-platform.mjs": {
     "mtime": 1787127015.3021803,
     "ast_hash": "9bf32b56cb1834b21604b15560c72217",
+    "semantic_hash": ""
+  },
+  "changes/session-2026-08-18_03-49-12_UTC_to_2026-08-19_08-26-16_UTC.md": {
+    "mtime": 1787128009.7794015,
+    "ast_hash": "1f3ead7ab1b3c90c51beafeabc974336",
     "semantic_hash": ""
   }
 }

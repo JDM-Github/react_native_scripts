@@ -1378,6 +1378,29 @@
       "norm_label": "main()"
     },
     {
+      "label": "get-auto-free-port.mjs",
+      "file_type": "code",
+      "source_file": "scripts/get-auto-free-port.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "scripts_get_auto_free_port",
+      "community": 35,
+      "community_name": "get-auto-free-port.mjs",
+      "norm_label": "get-auto-free-port.mjs"
+    },
+    {
+      "label": "findFreePort()",
+      "file_type": "code",
+      "source_file": "scripts/get-auto-free-port.mjs",
+      "source_location": "L6",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "scripts_get_auto_free_port_findfreeport",
+      "community": 35,
+      "community_name": "get-auto-free-port.mjs",
+      "norm_label": "findfreeport()"
+    },
+    {
       "label": "run-platform.mjs",
       "file_type": "code",
       "source_file": "scripts/run-platform.mjs",
@@ -1933,7 +1956,7 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "build_tier_1_free_and_local",
-      "community": 30,
+      "community": 33,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "tier 1 \u2014 free and local"
     },
@@ -1944,7 +1967,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "build_1_replace_the_prefix_based_navigation_guard",
-      "community": 30,
+      "community": 33,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "1. replace the prefix-based navigation guard"
     },
@@ -1955,7 +1978,7 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "build_2_restrict_external_url_opening",
-      "community": 30,
+      "community": 33,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "2. restrict external url opening"
     },
@@ -1966,7 +1989,7 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "build_3_serve_a_content_security_policy",
-      "community": 30,
+      "community": 33,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "3. serve a content security policy"
     },
@@ -1977,7 +2000,7 @@
       "source_location": "L130",
       "_origin": "ast",
       "id": "build_4_make_the_security_relevant_webpreferences_explicit",
-      "community": 30,
+      "community": 33,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "4. make the security-relevant `webpreferences` explicit"
     },
@@ -1988,7 +2011,7 @@
       "source_location": "L145",
       "_origin": "ast",
       "id": "build_5_replace_the_loopback_http_server_with_a_custom_protocol",
-      "community": 30,
+      "community": 33,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "5. replace the loopback http server with a custom protocol"
     },
@@ -1999,7 +2022,7 @@
       "source_location": "L180",
       "_origin": "ast",
       "id": "build_6_derive_app_identity_and_version_from_the_target_project",
-      "community": 30,
+      "community": 33,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "6. derive app identity and version from the target project"
     },
@@ -2010,7 +2033,7 @@
       "source_location": "L209",
       "_origin": "ast",
       "id": "build_7_configure_electron_fuses",
-      "community": 30,
+      "community": 33,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "7. configure electron fuses"
     },
@@ -2021,7 +2044,7 @@
       "source_location": "L233",
       "_origin": "ast",
       "id": "build_8_emit_checksums_and_a_release_manifest",
-      "community": 30,
+      "community": 33,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "8. emit checksums and a release manifest"
     },
@@ -2032,7 +2055,7 @@
       "source_location": "L251",
       "_origin": "ast",
       "id": "build_9_verify_signatures_as_a_build_gate",
-      "community": 30,
+      "community": 33,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "9. verify signatures as a build gate"
     },
@@ -2043,7 +2066,7 @@
       "source_location": "L273",
       "_origin": "ast",
       "id": "build_10_add_a_self_signed_test_identity_for_local_verification",
-      "community": 30,
+      "community": 33,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "10. add a self-signed test identity for local verification"
     },
@@ -2054,7 +2077,7 @@
       "source_location": "L293",
       "_origin": "ast",
       "id": "build_11_add_a_hardening_regression_check",
-      "community": 30,
+      "community": 33,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "11. add a hardening regression check"
     },
@@ -2065,7 +2088,7 @@
       "source_location": "L311",
       "_origin": "ast",
       "id": "build_12_ignore_certificate_and_secret_material",
-      "community": 30,
+      "community": 33,
       "community_name": "Tier 1 \u2014 Free and local",
       "norm_label": "12. ignore certificate and secret material"
     },
@@ -2189,116 +2212,6 @@
       "community": 27,
       "community_name": "CLAUDE.md",
       "norm_label": "claude.md"
-    },
-    {
-      "label": "CLAUDE.md",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "claude_claude_md",
-      "community": 27,
-      "community_name": "CLAUDE.md",
-      "norm_label": "claude.md"
-    },
-    {
-      "label": "What this repository is",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L3",
-      "_origin": "ast",
-      "id": "claude_what_this_repository_is",
-      "community": 27,
-      "community_name": "CLAUDE.md",
-      "norm_label": "what this repository is"
-    },
-    {
-      "label": "Layout",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L14",
-      "_origin": "ast",
-      "id": "claude_layout",
-      "community": 27,
-      "community_name": "CLAUDE.md",
-      "norm_label": "layout"
-    },
-    {
-      "label": "How one scaffold actually runs",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L27",
-      "_origin": "ast",
-      "id": "claude_how_one_scaffold_actually_runs",
-      "community": 27,
-      "community_name": "CLAUDE.md",
-      "norm_label": "how one scaffold actually runs"
-    },
-    {
-      "label": "The template convention",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L68",
-      "_origin": "ast",
-      "id": "claude_the_template_convention",
-      "community": 27,
-      "community_name": "CLAUDE.md",
-      "norm_label": "the template convention"
-    },
-    {
-      "label": "Finalizer invariants",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L87",
-      "_origin": "ast",
-      "id": "claude_finalizer_invariants",
-      "community": 27,
-      "community_name": "CLAUDE.md",
-      "norm_label": "finalizer invariants"
-    },
-    {
-      "label": "Builds",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L111",
-      "_origin": "ast",
-      "id": "claude_builds",
-      "community": 27,
-      "community_name": "CLAUDE.md",
-      "norm_label": "builds"
-    },
-    {
-      "label": "The Windows tray build (`--bin`)",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L143",
-      "_origin": "ast",
-      "id": "claude_the_windows_tray_build_bin",
-      "community": 27,
-      "community_name": "CLAUDE.md",
-      "norm_label": "the windows tray build (`--bin`)"
-    },
-    {
-      "label": "Adding a scaffold kind",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L173",
-      "_origin": "ast",
-      "id": "claude_adding_a_scaffold_kind",
-      "community": 27,
-      "community_name": "CLAUDE.md",
-      "norm_label": "adding a scaffold kind"
-    },
-    {
-      "label": "Verifying a change",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L205",
-      "_origin": "ast",
-      "id": "claude_verifying_a_change",
-      "community": 27,
-      "community_name": "CLAUDE.md",
-      "norm_label": "verifying a change"
     },
     {
       "label": "session-2026-08-16_23-40-02_UTC_to_2026-08-16_23-40-32_UTC.md",
@@ -2518,6 +2431,61 @@
       "id": "changes_session_2026_08_18_02_13_05_utc_to_2026_08_18_03_48_43_utc_risks_follow_ups",
       "community": 34,
       "community_name": "Change Summary -- 2026-08-18 02:13:05 UTC to 2026-08-18 03:48:43 UTC",
+      "norm_label": "risks / follow-ups"
+    },
+    {
+      "label": "session-2026-08-18_03-49-12_UTC_to_2026-08-19_08-26-16_UTC.md",
+      "file_type": "document",
+      "source_file": "changes/session-2026-08-18_03-49-12_UTC_to_2026-08-19_08-26-16_UTC.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "changes_session_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc",
+      "community": 30,
+      "community_name": "Change Summary -- 2026-08-18 03:49:12 UTC to 2026-08-19 08:26:16 UTC",
+      "norm_label": "session-2026-08-18_03-49-12_utc_to_2026-08-19_08-26-16_utc.md"
+    },
+    {
+      "label": "Change Summary -- 2026-08-18 03:49:12 UTC to 2026-08-19 08:26:16 UTC",
+      "file_type": "document",
+      "source_file": "changes/session-2026-08-18_03-49-12_UTC_to_2026-08-19_08-26-16_UTC.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "changes_session_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc_change_summary_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc",
+      "community": 30,
+      "community_name": "Change Summary -- 2026-08-18 03:49:12 UTC to 2026-08-19 08:26:16 UTC",
+      "norm_label": "change summary -- 2026-08-18 03:49:12 utc to 2026-08-19 08:26:16 utc"
+    },
+    {
+      "label": "Overview",
+      "file_type": "document",
+      "source_file": "changes/session-2026-08-18_03-49-12_UTC_to_2026-08-19_08-26-16_UTC.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "changes_session_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc_overview",
+      "community": 30,
+      "community_name": "Change Summary -- 2026-08-18 03:49:12 UTC to 2026-08-19 08:26:16 UTC",
+      "norm_label": "overview"
+    },
+    {
+      "label": "Key Changes",
+      "file_type": "document",
+      "source_file": "changes/session-2026-08-18_03-49-12_UTC_to_2026-08-19_08-26-16_UTC.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "changes_session_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc_key_changes",
+      "community": 30,
+      "community_name": "Change Summary -- 2026-08-18 03:49:12 UTC to 2026-08-19 08:26:16 UTC",
+      "norm_label": "key changes"
+    },
+    {
+      "label": "Risks / Follow-ups",
+      "file_type": "document",
+      "source_file": "changes/session-2026-08-18_03-49-12_UTC_to_2026-08-19_08-26-16_UTC.md",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "changes_session_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc_risks_follow_ups",
+      "community": 30,
+      "community_name": "Change Summary -- 2026-08-18 03:49:12 UTC to 2026-08-19 08:26:16 UTC",
       "norm_label": "risks / follow-ups"
     },
     {
@@ -4277,6 +4245,17 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "scripts/get-auto-free-port.mjs",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_get_auto_free_port",
+      "target": "scripts_get_auto_free_port_findfreeport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "scripts/run-platform.mjs",
       "source_location": "L48",
       "weight": 1.0,
@@ -4910,116 +4889,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "claude",
-      "target": "claude_claude_md",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L173",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "claude_claude_md",
-      "target": "claude_adding_a_scaffold_kind",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L111",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "claude_claude_md",
-      "target": "claude_builds",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L87",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "claude_claude_md",
-      "target": "claude_finalizer_invariants",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L27",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "claude_claude_md",
-      "target": "claude_how_one_scaffold_actually_runs",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L14",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "claude_claude_md",
-      "target": "claude_layout",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L68",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "claude_claude_md",
-      "target": "claude_the_template_convention",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L205",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "claude_claude_md",
-      "target": "claude_verifying_a_change",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "claude_claude_md",
-      "target": "claude_what_this_repository_is",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L143",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "claude_builds",
-      "target": "claude_the_windows_tray_build_bin",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "changes/session-2026-08-16_23-40-02_UTC_to_2026-08-16_23-40-32_UTC.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -5194,6 +5063,50 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "changes/session-2026-08-18_03-49-12_UTC_to_2026-08-19_08-26-16_UTC.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "changes_session_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc",
+      "target": "changes_session_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc_change_summary_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "changes/session-2026-08-18_03-49-12_UTC_to_2026-08-19_08-26-16_UTC.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "changes_session_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc_change_summary_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc",
+      "target": "changes_session_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc_key_changes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "changes/session-2026-08-18_03-49-12_UTC_to_2026-08-19_08-26-16_UTC.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "changes_session_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc_change_summary_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc",
+      "target": "changes_session_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc_overview",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "changes/session-2026-08-18_03-49-12_UTC_to_2026-08-19_08-26-16_UTC.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "changes_session_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc_change_summary_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc",
+      "target": "changes_session_2026_08_18_03_49_12_utc_to_2026_08_19_08_26_16_utc_risks_follow_ups",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "conceptually_related_to",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
@@ -5213,5 +5126,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "771c5c940a5632e3f62bc3fd607e072a8c0e6436"
+  "built_at_commit": "611b890fc65dcae3b270da05906e02161b1a0e3a"
 }

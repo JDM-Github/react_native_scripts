@@ -5,29 +5,58 @@
     "description": "A React Native Script project",
     "title": "React Native Script",
     "rules": {
-        "global": ["flag", "type", "required", "description", "default", "hide", "name"],
-        "string": ["allowed_regex"],
+        "global": [
+            "flag",
+            "type",
+            "required",
+            "description",
+            "default",
+            "hide",
+            "name"
+        ],
+        "string": [
+            "allowed_regex",
+            {
+                "commands": [
+                    "name",
+                    "command",
+                    "type"
+                ]
+            }
+        ],
         "array": [
             "allowed_values",
             {
                 "array_type": [
                     "select",
                     {
-                        "checkbox": ["max_selected"]
+                        "checkbox": [
+                            "max_selected"
+                        ]
                     },
                     "radio"
                 ]
             }
         ],
-        "object": ["required_keys"],
-        "number": ["min", "max"],
+        "object": [
+            "required_keys"
+        ],
+        "number": [
+            "min",
+            "max",
+            {
+                "commands": [
+                    "name",
+                    "command"
+                ]
+            }
+        ],
         "boolean": []
     },
     "after-clone-command": [
         "npm install --prefix \"scripts/electron\""
     ],
     "config": {
-
         "run": {
             "args": [
                 {
@@ -36,7 +65,14 @@
                     "type": "array",
                     "array_type": "radio",
                     "required": true,
-                    "allowed_values": ["android", "ios", "web", "window", "macos", "linux"],
+                    "allowed_values": [
+                        "android",
+                        "ios",
+                        "web",
+                        "window",
+                        "macos",
+                        "linux"
+                    ],
                     "description": "The platform to run the project on"
                 },
                 {
@@ -47,6 +83,12 @@
                     "min": 1024,
                     "max": 65535,
                     "default": 8080,
+                    "commands": [
+                        {
+                            "name": "Auto Port",
+                            "command": "node \"scripts/get-auto-free-port.mjs\""
+                        }
+                    ],
                     "description": "The port to run the project on"
                 },
                 {
@@ -74,9 +116,7 @@
                 "node \"scripts/run-platform.mjs\" --platform \"${run.args.platform}\" --project-root \"${root}\" --port \"${run.args.port}\" --host \"${run.args.host}\" --dev \"${run.args.dev}\""
             ]
         },
-
         "build": {
-
             "android": {
                 "path": "${root}/build/android",
                 "message-success": "Release APK and AAB created under build/android",
@@ -86,7 +126,6 @@
                     "node \"scripts/build-platform.mjs\" --platform \"android\" --project-root \"${root}\""
                 ]
             },
-
             "web": {
                 "path": "${root}/build/web",
                 "message-success": "Web bundle exported under build/web",
@@ -96,7 +135,6 @@
                     "node \"scripts/build-platform.mjs\" --platform \"web\" --project-root \"${root}\""
                 ]
             },
-
             "window": {
                 "args": [
                     {
@@ -169,7 +207,6 @@
                     "node \"scripts/build-platform.mjs\" --platform \"window\" --project-root \"${root}\" --bin \"${window.args.bin}\" --bin-icon \"${window.args.bin-icon}\" --bin-tooltip \"${window.args.bin-tooltip}\" --bin-menu \"${window.args.bin-menu}\" --bin-close-to-tray \"${window.args.bin-close-to-tray}\" --bin-start-minimized \"${window.args.bin-start-minimized}\" --bin-single-instance \"${window.args.bin-single-instance}\""
                 ]
             },
-
             "ios": {
                 "path": "${root}/build/ios",
                 "message-success": "iOS build finished",
@@ -179,7 +216,6 @@
                     "node \"scripts/build-platform.mjs\" --platform \"ios\" --project-root \"${root}\""
                 ]
             },
-
             "macos": {
                 "path": "${root}/build/macos",
                 "message-success": "macOS build finished",
@@ -189,7 +225,6 @@
                     "node \"scripts/build-platform.mjs\" --platform \"macos\" --project-root \"${root}\""
                 ]
             },
-
             "linux": {
                 "path": "${root}/build/linux",
                 "message-success": "Linux build finished",
@@ -199,11 +234,8 @@
                     "node \"scripts/build-platform.mjs\" --platform \"linux\" --project-root \"${root}\""
                 ]
             }
-
         },
-
         "scaffold": {
-
             "screen": {
                 "args": [
                     {
@@ -214,13 +246,24 @@
                         "allowed_regex": "^[a-z]+(-[a-z]+)*$",
                         "description": "The screen name; kebab-case is recommended"
                     },
-                    { "name": "Overwrite", "flag": "overwrite", "type": "boolean", "required": false, "description": "Replace the screen and its companion files when they already exist" },
-                    { "name": "Skip companions", "flag": "skip-companions", "type": "boolean", "required": false, "description": "Create only the screen, without its controller, constant, and enum" }
+                    {
+                        "name": "Overwrite",
+                        "flag": "overwrite",
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Replace the screen and its companion files when they already exist"
+                    },
+                    {
+                        "name": "Skip companions",
+                        "flag": "skip-companions",
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Create only the screen, without its controller, constant, and enum"
+                    }
                 ],
                 "path": "${root}/src/screens",
                 "template": "templates/screen.template.tsx",
                 "filename": "${screen.args.name}.screen.tsx",
-
                 "message-success": "Screen created and normalized successfully",
                 "message-error": "Error creating screen: ${error}",
                 "message-exists": "Screen already exists at ${screen.path}/${screen.filename}",
@@ -231,12 +274,30 @@
                     "node \"scripts/finalize-scaffold-template.mjs\" --kind \"screen\" --target \"${screen.path}/${screen.filename}\" --name \"${screen.args.name}\" --project-root \"${root}\" --overwrite \"${screen.args.overwrite}\" --skip-companions \"${screen.args.skip-companions}\""
                 ]
             },
-
             "layout": {
                 "args": [
-                    { "name": "Layout name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$", "description": "The layout name; kebab-case is recommended" },
-                    { "name": "Overwrite", "flag": "overwrite", "type": "boolean", "required": false, "description": "Replace the layout and its companion files when they already exist" },
-                    { "name": "Skip companions", "flag": "skip-companions", "type": "boolean", "required": false, "description": "Create only the layout, without its controller, constant, and enum" }
+                    {
+                        "name": "Layout name",
+                        "flag": "name",
+                        "type": "string",
+                        "required": true,
+                        "allowed_regex": "^[a-z]+(-[a-z]+)*$",
+                        "description": "The layout name; kebab-case is recommended"
+                    },
+                    {
+                        "name": "Overwrite",
+                        "flag": "overwrite",
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Replace the layout and its companion files when they already exist"
+                    },
+                    {
+                        "name": "Skip companions",
+                        "flag": "skip-companions",
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Create only the layout, without its controller, constant, and enum"
+                    }
                 ],
                 "path": "${root}/src/layouts",
                 "template": "templates/layout.template.tsx",
@@ -251,10 +312,15 @@
                     "node \"scripts/finalize-scaffold-template.mjs\" --kind \"layout\" --target \"${layout.path}/${layout.filename}\" --name \"${layout.args.name}\" --project-root \"${root}\" --overwrite \"${layout.args.overwrite}\" --skip-companions \"${layout.args.skip-companions}\""
                 ]
             },
-
             "widget": {
                 "args": [
-                    { "name": "Widget name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    {
+                        "name": "Widget name",
+                        "flag": "name",
+                        "type": "string",
+                        "required": true,
+                        "allowed_regex": "^[a-z]+(-[a-z]+)*$"
+                    }
                 ],
                 "path": "${root}/src/components/widgets",
                 "template": "templates/widget.template.tsx",
@@ -269,11 +335,23 @@
                     "node \"scripts/finalize-scaffold-template.mjs\" --kind \"widget\" --target \"${widget.path}/${widget.filename}\" --name \"${widget.args.name}\" --project-root \"${root}\""
                 ]
             },
-
             "apiEndpoint": {
                 "args": [
-                    { "name": "Endpoint name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$", "description": "The API resource name; kebab-case is recommended" },
-                    { "name": "Overwrite", "flag": "overwrite", "type": "boolean", "required": false, "description": "Replace the endpoint when one of the same name already exists" }
+                    {
+                        "name": "Endpoint name",
+                        "flag": "name",
+                        "type": "string",
+                        "required": true,
+                        "allowed_regex": "^[a-z]+(-[a-z]+)*$",
+                        "description": "The API resource name; kebab-case is recommended"
+                    },
+                    {
+                        "name": "Overwrite",
+                        "flag": "overwrite",
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Replace the endpoint when one of the same name already exists"
+                    }
                 ],
                 "path": "${root}/src/apis/endpoint",
                 "template": "templates/api-endpoint.template.ts",
@@ -288,12 +366,30 @@
                     "node \"scripts/finalize-scaffold-template.mjs\" --kind \"apiEndpoint\" --target \"${apiEndpoint.path}/${apiEndpoint.filename}\" --name \"${apiEndpoint.args.name}\" --project-root \"${root}\" --overwrite \"${apiEndpoint.args.overwrite}\""
                 ]
             },
-
             "apiModel": {
                 "args": [
-                    { "name": "Model name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$", "description": "The API resource name; kebab-case is recommended" },
-                    { "name": "Overwrite", "flag": "overwrite", "type": "boolean", "required": false, "description": "Replace the model and its GET ping endpoint when they already exist" },
-                    { "name": "Skip companions", "flag": "skip-companions", "type": "boolean", "required": false, "description": "Create only the model, without the GET ping endpoint" }
+                    {
+                        "name": "Model name",
+                        "flag": "name",
+                        "type": "string",
+                        "required": true,
+                        "allowed_regex": "^[a-z]+(-[a-z]+)*$",
+                        "description": "The API resource name; kebab-case is recommended"
+                    },
+                    {
+                        "name": "Overwrite",
+                        "flag": "overwrite",
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Replace the model and its GET ping endpoint when they already exist"
+                    },
+                    {
+                        "name": "Skip companions",
+                        "flag": "skip-companions",
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Create only the model, without the GET ping endpoint"
+                    }
                 ],
                 "path": "${root}/src/apis/models",
                 "template": "templates/api-model.template.ts",
@@ -308,10 +404,15 @@
                     "node \"scripts/finalize-scaffold-template.mjs\" --kind \"apiModel\" --target \"${apiModel.path}/${apiModel.filename}\" --name \"${apiModel.args.name}\" --project-root \"${root}\" --overwrite \"${apiModel.args.overwrite}\" --skip-companions \"${apiModel.args.skip-companions}\""
                 ]
             },
-
             "service": {
                 "args": [
-                    { "name": "Service name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    {
+                        "name": "Service name",
+                        "flag": "name",
+                        "type": "string",
+                        "required": true,
+                        "allowed_regex": "^[a-z]+(-[a-z]+)*$"
+                    }
                 ],
                 "path": "${root}/src/core/services",
                 "template": "templates/service.template.ts",
@@ -326,10 +427,15 @@
                     "node \"scripts/finalize-scaffold-template.mjs\" --kind \"service\" --target \"${service.path}/${service.filename}\" --name \"${service.args.name}\" --project-root \"${root}\""
                 ]
             },
-
             "storage": {
                 "args": [
-                    { "name": "Storage name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    {
+                        "name": "Storage name",
+                        "flag": "name",
+                        "type": "string",
+                        "required": true,
+                        "allowed_regex": "^[a-z]+(-[a-z]+)*$"
+                    }
                 ],
                 "path": "${root}/src/core/storages",
                 "template": "templates/storage.template.ts",
@@ -344,10 +450,15 @@
                     "node \"scripts/finalize-scaffold-template.mjs\" --kind \"storage\" --target \"${storage.path}/${storage.filename}\" --name \"${storage.args.name}\" --project-root \"${root}\""
                 ]
             },
-
             "utility": {
                 "args": [
-                    { "name": "Utility name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    {
+                        "name": "Utility name",
+                        "flag": "name",
+                        "type": "string",
+                        "required": true,
+                        "allowed_regex": "^[a-z]+(-[a-z]+)*$"
+                    }
                 ],
                 "path": "${root}/src/core/utilities",
                 "template": "templates/utility.template.ts",
@@ -362,10 +473,15 @@
                     "node \"scripts/finalize-scaffold-template.mjs\" --kind \"utility\" --target \"${utility.path}/${utility.filename}\" --name \"${utility.args.name}\" --project-root \"${root}\""
                 ]
             },
-
             "state": {
                 "args": [
-                    { "name": "State name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    {
+                        "name": "State name",
+                        "flag": "name",
+                        "type": "string",
+                        "required": true,
+                        "allowed_regex": "^[a-z]+(-[a-z]+)*$"
+                    }
                 ],
                 "path": "${root}/src/core/states",
                 "template": "templates/state.template.ts",
@@ -380,10 +496,15 @@
                     "node \"scripts/finalize-scaffold-template.mjs\" --kind \"state\" --target \"${state.path}/${state.filename}\" --name \"${state.args.name}\" --project-root \"${root}\""
                 ]
             },
-
             "manager": {
                 "args": [
-                    { "name": "Manager name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    {
+                        "name": "Manager name",
+                        "flag": "name",
+                        "type": "string",
+                        "required": true,
+                        "allowed_regex": "^[a-z]+(-[a-z]+)*$"
+                    }
                 ],
                 "path": "${root}/src/core/managers",
                 "template": "templates/manager.template.ts",
@@ -398,10 +519,15 @@
                     "node \"scripts/finalize-scaffold-template.mjs\" --kind \"manager\" --target \"${manager.path}/${manager.filename}\" --name \"${manager.args.name}\" --project-root \"${root}\""
                 ]
             },
-
             "constant": {
                 "args": [
-                    { "name": "Constant name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    {
+                        "name": "Constant name",
+                        "flag": "name",
+                        "type": "string",
+                        "required": true,
+                        "allowed_regex": "^[a-z]+(-[a-z]+)*$"
+                    }
                 ],
                 "path": "${root}/src/core/constants",
                 "template": "templates/constant.template.ts",
@@ -416,10 +542,15 @@
                     "node \"scripts/finalize-scaffold-template.mjs\" --kind \"constant\" --target \"${constant.path}/${constant.filename}\" --name \"${constant.args.name}\" --project-root \"${root}\""
                 ]
             },
-
             "enum": {
                 "args": [
-                    { "name": "Enum name", "flag": "name", "type": "string", "required": true, "allowed_regex": "^[a-z]+(-[a-z]+)*$" }
+                    {
+                        "name": "Enum name",
+                        "flag": "name",
+                        "type": "string",
+                        "required": true,
+                        "allowed_regex": "^[a-z]+(-[a-z]+)*$"
+                    }
                 ],
                 "path": "${root}/src/core/enums",
                 "template": "templates/enum.template.ts",
@@ -434,7 +565,6 @@
                     "node \"scripts/finalize-scaffold-template.mjs\" --kind \"enum\" --target \"${enum.path}/${enum.filename}\" --name \"${enum.args.name}\" --project-root \"${root}\""
                 ]
             }
-
         }
     }
 }

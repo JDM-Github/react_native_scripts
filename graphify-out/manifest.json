@@ -1,7 +1,7 @@
 {
   "ikaika.script.json": {
-    "mtime": 1787127074.1731253,
-    "ast_hash": "abcc55cce4767c9a4aeca86352f06d4d",
+    "mtime": 1787138533.9711947,
+    "ast_hash": "42abcdb0f3d54162f94c6b7a8a0eccb0",
     "semantic_hash": ""
   },
   "scripts/finalize-scaffold-template.mjs": {
@@ -130,8 +130,8 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1787127285.629848,
-    "ast_hash": "36b0f628b01d95771c0f92421e9223f6",
+    "mtime": 1787136526.9153054,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": ""
   },
   "scripts/build-platform.mjs": {
@@ -167,6 +167,16 @@
   "scripts/run-platform.mjs": {
     "mtime": 1787127015.3021803,
     "ast_hash": "9bf32b56cb1834b21604b15560c72217",
+    "semantic_hash": ""
+  },
+  "changes/session-2026-08-18_03-49-12_UTC_to_2026-08-19_08-26-16_UTC.md": {
+    "mtime": 1787128009.7794015,
+    "ast_hash": "1f3ead7ab1b3c90c51beafeabc974336",
+    "semantic_hash": ""
+  },
+  "scripts/get-auto-free-port.mjs": {
+    "mtime": 1787138521.6910813,
+    "ast_hash": "818b1ba7ea28b3c525c108002e75c096",
     "semantic_hash": ""
   }
 }
